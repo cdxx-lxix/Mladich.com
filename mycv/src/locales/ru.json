@@ -8,13 +8,12 @@
         "tooltipMenu": "Меню"
     },
     "menu": {
-        "home": "Menu",
-        "aboutme": "About me",
-        "projects": "My projects",
-        "youtube": "My channel",
-        "guides": "Guides",
-        "contacts": "Contacts",
-        "about": "About",
-        "search": "Search"
+        "home": "Главная",
+        "aboutme": "Обо мне",
+        "projects": "Мои проекты",
+        "youtube": "Мой канал",
+        "guides": "Уроки",
+        "contacts": "Контакты",
+        "search": "Поиск"
     }
 }

@@ -25,19 +25,19 @@
     <v-layout class="overflow-visible" style="height: 56px;">
       <v-bottom-navigation active>
 
-        <v-btn>{{ $t('menu.home') }}</v-btn>
+        <v-btn @click="navigateTo('Home')">{{ $t('menu.home') }}</v-btn>
 
         <v-divider vertical />
 
-        <v-btn>{{ $t('menu.aboutme') }}</v-btn>
+        <v-btn @click="navigateTo('About me')">{{ $t('menu.aboutme') }}</v-btn>
 
-        <v-btn>{{ $t('menu.projects') }}</v-btn>
+        <v-btn @click="navigateTo('My projects')">{{ $t('menu.projects') }}</v-btn>
 
         <v-btn>{{ $t('menu.youtube') }}</v-btn>
 
-        <v-btn>{{ $t('menu.guides') }}</v-btn>
+        <v-btn @click="navigateTo('Guides')">{{ $t('menu.guides') }}</v-btn>
 
-        <v-btn>{{ $t('menu.contacts') }}</v-btn>
+        <v-btn @click="navigateTo('Contacts')">{{ $t('menu.contacts') }}</v-btn>
 
       </v-bottom-navigation>
     </v-layout>
@@ -66,6 +66,11 @@ export default {
   components: {
     Theme,
     Language
-  }
+  },
+  methods: {
+    navigateTo(route) {
+      this.$router.push({ name: route });
+    },
+  },
 }
 </script>
