@@ -1,0 +1,17 @@
+{
+    "appbar": {
+        "title": "Алекс Младич",
+        "themeDark": "Тёмная",
+        "themeLight": "Светлая"
+    },
+    "menu": {
+        "home": "Menu",
+        "aboutme": "About me",
+        "projects": "My projects",
+        "youtube": "My channel",
+        "guides": "Guides",
+        "contacts": "Contacts",
+        "about": "About",
+        "search": "Search"
+    }
+}
