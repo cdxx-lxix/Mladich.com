@@ -2,7 +2,10 @@
     "appbar": {
         "title": "Alex Mladich",
         "themeDark": "Dark",
-        "themeLight": "Light"
+        "themeLight": "Light",
+        "tooltipLang": "Site's language",
+        "tooltipTheme": "Site's theme",
+        "tooltipMenu": "Menu"
     },
     "menu": {
         "home": "Home",

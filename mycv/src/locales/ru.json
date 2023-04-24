@@ -2,7 +2,10 @@
     "appbar": {
         "title": "Алекс Младич",
         "themeDark": "Тёмная",
-        "themeLight": "Светлая"
+        "themeLight": "Светлая",
+        "tooltipLang": "Язык сайта",
+        "tooltipTheme": "Тема сайта",
+        "tooltipMenu": "Меню"
     },
     "menu": {
         "home": "Menu",

@@ -2,6 +2,7 @@
 <template>
     <v-btn @click="toggleTheme">
         {{ theme.global.current.value.dark ? $t('appbar.themeDark') : $t('appbar.themeLight') }}
+        <v-tooltip activator="parent" location="bottom" >{{ $t('appbar.tooltipTheme') }}</v-tooltip>
     </v-btn>
 </template>
 
