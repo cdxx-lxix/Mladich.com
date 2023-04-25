@@ -3,35 +3,40 @@
   <v-row class="d-flex justify-space-evenly my-background">
     <v-sheet class="flex-grow-1 flex-shrink-0 h-screen custom-col" :class="currentTheme === 'dark' ? 'transparent-sheet' : 'transparent-sheetLight'" @click="navigateTo('About me')" @mouseover="handleMouseOver" @mouseout="handleMouseOut">
       <v-container fluid class="fill-height">
-        <v-row class="fill-height text-h5" align="center" justify="center">
+        <v-row class="fill-height text-h5 flex" align="center" justify="center" style="flex-direction: column;">
+          <v-icon icon="mdi-account"></v-icon>
           <div class="no-selection">{{ $t('menu.aboutme') }}</div>
         </v-row>
       </v-container>
     </v-sheet>
     <v-sheet class="flex-grow-1 flex-shrink-0 h-screen custom-col" :class="currentTheme === 'dark' ? 'transparent-sheet' : 'transparent-sheetLight'" @click="navigateTo('My projects')" @mouseover="handleMouseOver" @mouseout="handleMouseOut">
       <v-container fluid class="fill-height">
-        <v-row class="fill-height text-h5" align="center" justify="center">
+        <v-row class="fill-height text-h5 flex" align="center" justify="center" style="flex-direction: column;">
+          <v-icon icon="mdi-projector-screen"></v-icon>
           <div class="no-selection">{{ $t('menu.projects') }}</div>
         </v-row>
       </v-container>
     </v-sheet>
-    <v-sheet class="flex-grow-1 flex-shrink-0 h-screen custom-col" :class="currentTheme === 'dark' ? 'transparent-sheet' : 'transparent-sheetLight'"  @mouseover="handleMouseOver" @mouseout="handleMouseOut">
+    <v-sheet class="flex-grow-1 flex-shrink-0 h-screen custom-col" :class="currentTheme === 'dark' ? 'transparent-sheet' : 'transparent-sheetLight'" @click="navigateTo('Youtube')"  @mouseover="handleMouseOver" @mouseout="handleMouseOut">
       <v-container fluid class="fill-height">
-        <v-row class="fill-height text-h5" align="center" justify="center">
+        <v-row class="fill-height text-h5 flex" align="center" justify="center" style="flex-direction: column;">
+          <v-icon icon="mdi-video"></v-icon>
           <div class="no-selection">{{ $t('menu.youtube') }}</div>
         </v-row>
       </v-container>
     </v-sheet>
     <v-sheet class="flex-grow-1 flex-shrink-0 h-screen custom-col" :class="currentTheme === 'dark' ? 'transparent-sheet' : 'transparent-sheetLight'" @click="navigateTo('Guides')" @mouseover="handleMouseOver" @mouseout="handleMouseOut">
       <v-container fluid class="fill-height">
-        <v-row class="fill-height text-h5" align="center" justify="center">
+        <v-row class="fill-height text-h5 flex" align="center" justify="center" style="flex-direction: column;">
+          <v-icon icon="mdi-television-guide"></v-icon>
           <div class="no-selection">{{ $t('menu.guides') }}</div>
         </v-row>
       </v-container>
     </v-sheet>
     <v-sheet class="flex-grow-1 flex-shrink-0 h-screen custom-col" :class="currentTheme === 'dark' ? 'transparent-sheet' : 'transparent-sheetLight'" @click="navigateTo('Contacts')" @mouseover="handleMouseOver" @mouseout="handleMouseOut">
       <v-container fluid class="fill-height">
-        <v-row class="fill-height text-h5" align="center" justify="center">
+        <v-row class="fill-height text-h5 flex" align="center" justify="center" style="flex-direction: column;">
+          <v-icon icon="mdi-card-account-mail"></v-icon>
           <div class="no-selection">{{ $t('menu.contacts') }}</div>
         </v-row>
       </v-container>
@@ -99,7 +104,7 @@ export default {
   }
   .transparent-sheetLight:hover {
     opacity: 1 !important;
-    background: rgba(219, 206, 206, 0.6);
+    background: rgba(204, 203, 203, 0.6);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   }
   .my-background {
