@@ -74,3 +74,16 @@ export default {
   },
 }
 </script>
+
+<style>
+/* Disables scrollbar and sets website's size */
+  html {
+    height: 100vh;
+    width: 100vw;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+  }
+  html::-webkit-scrollbar {
+  display: none;
+  }
+</style>

@@ -1,43 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <v-row class="d-flex justify-space-evenly my-background">
-    <v-sheet class="flex-grow-1 flex-shrink-0 h-screen custom-col" :class="currentTheme === 'dark' ? 'transparent-sheet' : 'transparent-sheetLight'" @click="navigateTo('About me')" @mouseover="handleMouseOver" @mouseout="handleMouseOut">
+    <v-sheet v-for="menuItem in menuItems" :key="menuItem.id" class="flex-grow-1 flex-shrink-0 h-screen custom-col"
+     :class="currentTheme === 'dark' ? 'transparent-sheet' : 'transparent-sheetLight'" 
+     @click="navigateTo(menuItem.route)" @mouseover="handleMouseOver" @mouseout="handleMouseOut">
       <v-container fluid class="fill-height">
         <v-row class="fill-height text-h5 flex" align="center" justify="center" style="flex-direction: column;">
-          <v-icon icon="mdi-account"></v-icon>
-          <div class="no-selection">{{ $t('menu.aboutme') }}</div>
-        </v-row>
-      </v-container>
-    </v-sheet>
-    <v-sheet class="flex-grow-1 flex-shrink-0 h-screen custom-col" :class="currentTheme === 'dark' ? 'transparent-sheet' : 'transparent-sheetLight'" @click="navigateTo('My projects')" @mouseover="handleMouseOver" @mouseout="handleMouseOut">
-      <v-container fluid class="fill-height">
-        <v-row class="fill-height text-h5 flex" align="center" justify="center" style="flex-direction: column;">
-          <v-icon icon="mdi-projector-screen"></v-icon>
-          <div class="no-selection">{{ $t('menu.projects') }}</div>
-        </v-row>
-      </v-container>
-    </v-sheet>
-    <v-sheet class="flex-grow-1 flex-shrink-0 h-screen custom-col" :class="currentTheme === 'dark' ? 'transparent-sheet' : 'transparent-sheetLight'" @click="navigateTo('Youtube')"  @mouseover="handleMouseOver" @mouseout="handleMouseOut">
-      <v-container fluid class="fill-height">
-        <v-row class="fill-height text-h5 flex" align="center" justify="center" style="flex-direction: column;">
-          <v-icon icon="mdi-video"></v-icon>
-          <div class="no-selection">{{ $t('menu.youtube') }}</div>
-        </v-row>
-      </v-container>
-    </v-sheet>
-    <v-sheet class="flex-grow-1 flex-shrink-0 h-screen custom-col" :class="currentTheme === 'dark' ? 'transparent-sheet' : 'transparent-sheetLight'" @click="navigateTo('Guides')" @mouseover="handleMouseOver" @mouseout="handleMouseOut">
-      <v-container fluid class="fill-height">
-        <v-row class="fill-height text-h5 flex" align="center" justify="center" style="flex-direction: column;">
-          <v-icon icon="mdi-television-guide"></v-icon>
-          <div class="no-selection">{{ $t('menu.guides') }}</div>
-        </v-row>
-      </v-container>
-    </v-sheet>
-    <v-sheet class="flex-grow-1 flex-shrink-0 h-screen custom-col" :class="currentTheme === 'dark' ? 'transparent-sheet' : 'transparent-sheetLight'" @click="navigateTo('Contacts')" @mouseover="handleMouseOver" @mouseout="handleMouseOut">
-      <v-container fluid class="fill-height">
-        <v-row class="fill-height text-h5 flex" align="center" justify="center" style="flex-direction: column;">
-          <v-icon icon="mdi-card-account-mail"></v-icon>
-          <div class="no-selection">{{ $t('menu.contacts') }}</div>
+          <v-icon :icon="menuItem.icon"></v-icon>
+          <div class="no-selection">{{ $t(menuItem.text) }}</div>
         </v-row>
       </v-container>
     </v-sheet>
@@ -57,25 +27,41 @@ export default {
     handleMouseOver(event) {
       const parentElement = event.target;
       if (parentElement.children.length > 0) {
-        const targetChildElement = parentElement.querySelector('.no-selection')
-        targetChildElement.classList.add('hoveredOver')
+        const divText = parentElement.querySelector('.no-selection')
+        const icon = parentElement.querySelector('.mdi')
+        divText.classList.add('hoveredOver')
+        icon.classList.add('v-icon--size-x-large')
       }
     },
     handleMouseOut(event) {
       const parentElement = event.target;
       if (parentElement.children.length > 0) {
-        const targetChildElement = parentElement.querySelector('.no-selection')
-        targetChildElement.classList.remove('hoveredOver')
+        const divText = parentElement.querySelector('.no-selection')
+        const icon = parentElement.querySelector('.mdi')
+        divText.classList.remove('hoveredOver')
+        icon.classList.remove('v-icon--size-x-large')
       }
     }
   },
   setup() {
-    // Retrieve value from global storage to change my v-sheets and other things accordingly
+    // Retrieve value from global storage to change my v-sheets and other things accordingly v-icon--size-x-large
     const store = useAppStore()
     const currentTheme = computed(() => store.currentUsersTheme)
 
     return {
       currentTheme
+    }
+  },
+  data() {
+    return {
+      menuItems: [
+        { id: 1, icon: 'mdi-account', text: 'menu.aboutme', route: 'About me' },
+        { id: 2, icon: 'mdi-projector-screen', text: 'menu.projects', route: 'My projects' },
+        { id: 3, icon: 'mdi-video', text: 'menu.youtube', route: 'Youtube' },
+        { id: 4, icon: 'mdi-television-guide', text: 'menu.guides', route: 'Guides' },
+        { id: 5, icon: 'mdi-card-account-mail', text: 'menu.contacts', route: 'Contacts'}
+      ],
+      iconSize: ''
     }
   }
 
@@ -86,6 +72,7 @@ export default {
   .custom-col {
     flex: 1 0 20%;
     max-width: 20%;
+    height: 95vh !important;
   }
 .transparent-sheet {
     opacity: 0.4;
@@ -111,7 +98,7 @@ export default {
     background-image: var(--themedBackground);
     background-position: center;
     height: 100%;
-    width: 100%;
+    width: 101vw;
   }
   .no-selection {
     user-select: none;
