@@ -15,5 +15,13 @@
         "guides": "Guides",
         "contacts": "Contacts",
         "search": "Search"
+    },
+    "aboutme": {
+        "c1_title": "About me",
+        "c1_position": "Web Developer",
+        "c1_status": "Freelance / Open for hire",
+        "c1_citizen": "Citizenship: Russia",
+        "c1_location": "Located in: Georgia, Tbilisi",
+        "c1_text": "Hello there! I'm Alex, {years} y.o."
     }
 }
