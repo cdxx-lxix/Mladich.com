@@ -22,6 +22,57 @@
         "c1_status": "Freelance / Open for hire",
         "c1_citizen": "Citizenship: Russia",
         "c1_location": "Located in: Georgia, Tbilisi",
-        "c1_text": "Hello there! I'm Alex, {years} y.o."
+        "c1_text": "Hello there! I'm Alex, {years} y.o.",
+        "c2_title": "Experience"
+    },
+    "experience": {
+        "first": {
+            "name": "ACIDWEAR",
+            "workTime": "2021-2023",
+            "duties": "Internal tech infrastructure (inner Wiki, IP-telephones, warehouse software and hardware, company's mailserver), website development and maintenance.",
+            "icon": "mdi-briefcase"
+        },
+        "second" : {
+            "name": "Freelance",
+            "workTime": "2020-2021",
+            "duties": "Projects for local businesses and interpreneuers.",
+            "icon": "mdi-coffee"
+        },
+        "third" : {
+            "name": "Skilled Young Talents",
+            "workTime": "2020",
+            "duties": "Government funded program of additional education for skilled workers. That's where I chose to unite my design and programming passion.",
+            "icon": "mdi-school"
+        },
+        "fourth": {
+            "name": "OZON",
+            "workTime": "2017-2020",
+            "duties": "Although my work as a warehouse manager was not directly related to my current role, it provided valuable experience in project and team management, decision making process & autonomy.",
+            "icon": "mdi-briefcase"
+        },
+        "fifth": {
+            "name": "Karl's Faberge Colledge",
+            "workTime": "2014-2017",
+            "duties": "I hold a degree in design and received comprehensive training in designing, 3D modelling and management. Which provided me with a strong foundation in my field of work.",
+            "icon": "mdi-school"
+        },
+        "sixth": {
+            "name": "Mandatory military service",
+            "workTime": "2012-2013",
+            "duties": "Got drafted right after the school. Served as a firefighter in a rank of a sergeant.",
+            "icon": "mdi-fire-extinguisher"
+        },
+        "seventh": {
+            "name": "Public school education",
+            "workTime": "2001-2012",
+            "duties": "General school education",
+            "icon": "mdi-school"
+        },
+        "eighth": {
+            "name": "Initial commit",
+            "workTime": "1994",
+            "duties": "Difficulty: Hard. Player name: Alex Mladich. Location: Russia, Moscow.",
+            "icon": "mdi-baby-bottle"
+        }
     }
 }
