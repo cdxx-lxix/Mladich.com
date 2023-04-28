@@ -23,7 +23,8 @@
         "c1_citizen": "Citizenship: Russia",
         "c1_location": "Located in: Georgia, Tbilisi",
         "c1_text": "Hello there! I'm Alex, {years} y.o.",
-        "c2_title": "Experience"
+        "c2_title": "Experience & Education",
+        "c3_title": "Software skills"
     },
     "experience": {
         "first": {
@@ -74,5 +75,9 @@
             "duties": "Difficulty: Hard. Player name: Alex Mladich. Location: Russia, Moscow.",
             "icon": "mdi-baby-bottle"
         }
+    },
+    "contacts": {
+        "title": "",
+        "title_ways": "Ways to contact me"
     }
 }
