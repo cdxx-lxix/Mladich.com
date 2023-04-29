@@ -24,7 +24,9 @@
         "c1_location": "Located in: Georgia, Tbilisi",
         "c1_text": "Hello there! I'm Alex, {years} y.o.",
         "c2_title": "Experience & Education",
-        "c3_title": "Software skills"
+        "c3_title": "Software skills",
+        "c3_subtitle": "Click on the icon to learn more",
+        "c3_langs": "Languages:"
     },
     "experience": {
         "first": {

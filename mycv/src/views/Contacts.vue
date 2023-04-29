@@ -14,7 +14,6 @@
           </v-col>
           <v-col cols="4">
             <v-card class="pa-4 my-4">
-              info
             </v-card>
           </v-col>
         </v-row>
