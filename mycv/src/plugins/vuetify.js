@@ -7,6 +7,8 @@
 // Styles
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
+import { mdi } from "vuetify/iconsets/mdi";
+import custom from '@/iconsets/customset'
 
 // Composables
 import { createVuetify } from 'vuetify'
@@ -27,6 +29,13 @@ export default createVuetify({
           secondary: '#5CBBF6',
         },
       },
+    },
+  },
+  icons: {
+    defaultSet: "mdi",
+    sets: {
+      mdi,
+      custom: custom,
     },
   },
 })

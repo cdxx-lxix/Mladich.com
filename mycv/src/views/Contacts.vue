@@ -20,9 +20,9 @@
         <v-card :title="$t('contacts.title_ways')" class="pa-4">
           <v-timeline direction="horizontal" line-inset="12">
             <v-timeline-item v-for="option in options" :key="option" :dot-color="currentTheme === 'dark' ? 'indigo-accent-4' : 'teal-accent-4'" fill-dot>
-              <template v-slot:icon>
-                <v-avatar :image="option.icon" class="ma-2"></v-avatar>
-              </template>
+                <template v-slot:icon>
+                  <v-avatar :icon="option.icon" class="ma-2"></v-avatar>
+                </template>
               <template v-slot:opposite>
                 <v-btn variant="text" :href="option.link" v-if="option.id % 2 === 1">{{ option.tooltip }}</v-btn>
               </template>
@@ -36,12 +36,6 @@
 </template>
   
 <script >
-import mail from '../assets/icons/Contacts/at.svg'
-import github from '../assets/icons/Contacts/github.svg'
-import ig from '../assets/icons/Contacts/instagram.svg'
-import linked from '../assets/icons/Contacts/linkedin.svg'
-import tg from '../assets/icons/Contacts/telegram.svg'
-import wt from '../assets/icons/Contacts/whatsapp.svg'
 import { computed } from 'vue'
 import { useAppStore } from '@/store/app'
 export default {
@@ -49,12 +43,13 @@ export default {
     return {
       options: {
         // I've not found any way to make items on the same side with itegrated methods so I came up with this odd\even method.
-        mail: { icon: mail, link: 'mailto:alex@mladich.com', tooltip: 'E-mail', id: 1 },
-        github: { icon: github, link: 'https://github.com/cdxx-lxix', tooltip: 'Github', id: 2 },
-        instagram: { icon: ig, link: 'https://www.instagram.com/amladich/', tooltip: 'Instagram', id: 3 },
-        linkedin: { icon: linked, link: 'https://www.linkedin.com/in/aleksandr-mladich-656534174/', tooltip: 'LinkedIn', id: 4 },
-        telegram: { icon: tg, link: 'https://t.me/cdxx_lxix', tooltip: 'Telegram', id: 5 },
-        whatsapp: { icon: wt, link: '', tooltip: 'Whatsapp', id: 6 }
+        mail: { icon: 'custom:mailIcon', link: 'mailto:alex@mladich.com', tooltip: 'E-mail', id: 1 },
+        github: { icon: 'custom:githubIcon', link: 'https://github.com/cdxx-lxix', tooltip: 'Github', id: 2 },
+        instagram: { icon: 'custom:instagramIcon', link: 'https://www.instagram.com/amladich/', tooltip: 'Instagram', id: 3 },
+        linkedin: { icon: 'custom:linkedinIcon', link: 'https://www.linkedin.com/in/aleksandr-mladich-656534174/', tooltip: 'LinkedIn', id: 4 },
+        telegram: { icon: 'custom:telegramIcon', link: 'https://t.me/cdxx_lxix', tooltip: 'Telegram', id: 5 },
+        whatsapp: { icon: 'custom:whatsappIcon', link: '', tooltip: 'Whatsapp', id: 6 },
+        vk: { icon: 'custom:vkontakteIcon', link: '', tooltip: 'Vkontakte', id: 7 }
       }
     }
   },
