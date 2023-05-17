@@ -16,6 +16,7 @@ import { registerPlugins } from '@/plugins'
 // My modules
 import i18n from './i18n.js'
 import { createMetaManager } from 'vue-meta'
+import { VueWindowSizePlugin } from 'vue-window-size/plugin'
 
 const app = createApp(App)
 const metaManager = createMetaManager()
@@ -23,6 +24,7 @@ const metaManager = createMetaManager()
 registerPlugins(app)
 app.use(i18n);
 app.use(metaManager)
+app.use(VueWindowSizePlugin)
 
 app.config.globalProperties.$supportedLanguages = ['en', 'ru']
 

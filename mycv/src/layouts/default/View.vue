@@ -33,7 +33,7 @@
 
         <v-btn @click="navigateTo('My projects')">{{ $t('menu.projects') }}</v-btn>
 
-        <v-btn>{{ $t('menu.youtube') }}</v-btn>
+        <v-btn @click="navigateTo('Youtube')">{{ $t('menu.youtube') }}</v-btn>
 
         <v-btn @click="navigateTo('Guides')">{{ $t('menu.guides') }}</v-btn>
 

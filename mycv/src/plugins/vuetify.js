@@ -19,14 +19,14 @@ export default createVuetify({
     themes: {
       light: {
         colors: {
-          primary: '#1867C0',
-          secondary: '#5CBBF6',
+          primary: '#00BFA5', // teal-accent-4
+          secondary: '#651FFF', // deep-purple-accent-3
         },
       },
       dark: {
         colors: {
-          primary: '#1867C0',
-          secondary: '#5CBBF6',
+          primary: '#304FFE', // indigo-accent-4
+          secondary: '#EF6C00', // orange-darken-3
         },
       },
     },
