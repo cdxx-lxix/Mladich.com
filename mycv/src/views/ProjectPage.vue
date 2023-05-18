@@ -1,16 +1,21 @@
 <template>
-    <v-row class="ma-2">
+    <v-row>
         <v-col cols="12">
-            <v-card>
+            <v-card class="ma-5">
                 <v-img :src="randomPattern" height="200" cover></v-img>
                 <v-card-action>
                     <v-list-item class="mt-2">
                         <template v-slot:prepend>
-                            <div class="text-h4">Laaaaa chto za tjagi</div>
-                            <v-card-subtitle>Barhatnyje</v-card-subtitle>
+                            <div class="text-h4">
+                                <span class="me-1">Testowyj projekt</span>
+                                <v-divider :thickness="2" vertical color="secondary"></v-divider>
+                                <v-icon icon="custom:vueIcon"></v-icon>
+                            </div>
                         </template>
                         <template v-slot:append>
-                            <v-btn variant="tonal" color="primary">keftemeeeee</v-btn>
+                            <v-btn variant="tonal" color="secondary">Visit repo</v-btn>
+                            <v-list-item></v-list-item>
+                            <v-btn variant="tonal" color="primary">Visit website</v-btn>
                         </template>
                     </v-list-item>
                 </v-card-action>
@@ -91,7 +96,25 @@
                         </v-sheet>
                         <v-spacer></v-spacer>
                         <v-sheet border="md" class="pa-4 mt-6">
-                            Tech
+                            <div class="text-h6">Tech</div>
+                            <v-divider :thickness="2"></v-divider>
+                            <v-chip-group style="pointer-events: none;">
+                                <v-chip prepend-icon="mdi-vuetify" variant="outlined" color="secondary">
+                                    Chip
+                                </v-chip>
+                                <v-chip prepend-icon="mdi-vuetify" variant="outlined" color="secondary">
+                                    Chip
+                                </v-chip>
+                                <v-chip prepend-icon="mdi-vuetify" variant="outlined" color="secondary">
+                                    Chip
+                                </v-chip>
+                                <v-chip prepend-icon="mdi-vuetify" variant="outlined" color="secondary">
+                                    Chip
+                                </v-chip>
+                                <v-chip prepend-icon="mdi-vuetify" variant="outlined" color="secondary">
+                                    Chip
+                                </v-chip>
+                            </v-chip-group>
                         </v-sheet>
                     </v-col>
                 </v-row>
