@@ -7,91 +7,26 @@
                     <v-list-item class="mt-2">
                         <template v-slot:prepend>
                             <div class="text-h4">
-                                <span class="me-1">Testowyj projekt</span>
+                                <span class="me-1">{{ project.title }}</span>
                                 <v-divider :thickness="2" vertical color="secondary"></v-divider>
-                                <v-icon icon="custom:vueIcon"></v-icon>
+                                <v-icon :icon="project.projectIcon"></v-icon>
                             </div>
                         </template>
                         <template v-slot:append>
-                            <v-btn variant="tonal" color="secondary">Visit repo</v-btn>
+                            <v-btn variant="tonal" color="secondary" :href="project.repo" :disabled="!project.repo ? true : false">Visit repo</v-btn>
                             <v-list-item></v-list-item>
-                            <v-btn variant="tonal" color="primary">Visit website</v-btn>
+                            <v-btn variant="tonal" color="primary" :href="project.website" :disabled="!project.website ? true : false">Visit website</v-btn>
                         </template>
                     </v-list-item>
                 </v-card-action>
                 <v-row class="ma-1">
                     <v-col cols="6" variant="outlined">
-                        <v-sheet border="md" class="text-body-1 pa-4">
-                            The project page uhuh {{ slug }}
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, libero suscipit ex cumque
-                            sint
-                            ab
-                            perspiciatis asperiores quaerat commodi eaque sequi reprehenderit culpa laudantium, nobis
-                            debitis
-                            assumenda consectetur! Iste sequi quia totam animi quod provident rem itaque eum placeat, fugit
-                            illum
-                            ipsa quisquam, tempore fugiat quidem sapiente nesciunt ea, dicta perspiciatis alias ullam quas
-                            harum
-                            repellat officiis? Rem iure quo id iste eos ea, excepturi tempora laboriosam possimus impedit
-                            eaque,
-                            itaque hic veritatis voluptatem quam deserunt? Pariatur nisi commodi reiciendis sequi et ut rem
-                            animi
-                            ipsum tempore itaque, sunt distinctio ab aperiam at quasi, in fugiat consequatur doloremque
-                            perferendis
-                            voluptates vitae tenetur debitis minima deserunt? Eius culpa ea magni dolorum commodi sit aut
-                            quod
-                            possimus explicabo autem voluptatibus ratione, ab, consectetur pariatur! Sunt veritatis sint
-                            nesciunt
-                            nemo quo, commodi in ad, atque doloribus maiores, ratione odit? Autem fuga sit non consequuntur,
-                            sint
-                            doloremque deserunt illo fugit sunt, excepturi dolorum ad recusandae iusto voluptate nostrum
-                            itaque
-                            consectetur in eaque mollitia? Quae maxime placeat cumque id hic quis maiores velit enim fuga
-                            itaque
-                            porro nisi qui quam quibusdam eaque tempora harum ipsa earum nihil deserunt, tenetur pariatur
-                            obcaecati
-                            odit error. Odio expedita labore quis autem quisquam quia veritatis, deserunt sequi eveniet
-                            atque
-                            doloribus architecto voluptatum id quod, illum voluptate, error ullam iusto distinctio cumque
-                            eligendi
-                            maxime molestias aperiam tempora? Ipsum asperiores cum veritatis voluptate distinctio eos
-                            quaerat
-                            ipsa
-                            exercitationem laboriosam eum tenetur similique pariatur reiciendis, nemo repellendus provident
-                            deserunt
-                            vero accusamus amet beatae quasi blanditiis rerum! Saepe vero, fugiat dignissimos repellendus
-                            quam
-                            possimus aperiam distinctio, doloremque exercitationem ipsum quasi voluptatibus assumenda alias
-                            corporis
-                            dolor laborum optio eveniet! Quos cupiditate maxime voluptas minima. Vel quisquam distinctio
-                            voluptatem!
-                            Sapiente corrupti placeat laudantium temporibus blanditiis quis impedit excepturi, porro ea
-                            adipisci
-                            cupiditate. Earum delectus sit totam ducimus vero aut dolor reprehenderit molestiae veniam,
-                            ratione
-                            aliquam accusantium voluptates tempore voluptatum impedit. Debitis dolores officiis, expedita
-                            nostrum in
-                            ducimus nemo hic sed quam adipisci libero doloremque dicta labore ab placeat quis fuga eos vero
-                            quas
-                            assumenda autem minima voluptates! Perspiciatis error ipsam iusto repellat natus omnis. Itaque,
-                            quia
-                            omnis saepe sequi ad repellat corrupti error. Reiciendis, incidunt labore? Quo iusto molestiae
-                            omnis
-                            magnam ad consectetur. Modi dolorum illum veritatis earum adipisci eligendi architecto repellat
-                            distinctio?
-                        </v-sheet>
+                        <v-sheet border="md" class="text-body-1 pa-4" v-html="richText"></v-sheet>
                     </v-col>
                     <v-col cols="6">
                         <v-sheet border="md" class="pa-4">
                             <v-carousel>
-                                <v-carousel-item src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                                    cover></v-carousel-item>
-
-                                <v-carousel-item src="https://cdn.vuetifyjs.com/images/cards/hotel.jpg"
-                                    cover></v-carousel-item>
-
-                                <v-carousel-item src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-                                    cover></v-carousel-item>
+                                <v-carousel-item v-for="image in project.gallery" :key="image.fields.title" :src="image.fields.file.url" cover></v-carousel-item>
                             </v-carousel>
                         </v-sheet>
                         <v-spacer></v-spacer>
@@ -99,20 +34,8 @@
                             <div class="text-h6">Tech</div>
                             <v-divider :thickness="2"></v-divider>
                             <v-chip-group style="pointer-events: none;">
-                                <v-chip prepend-icon="mdi-vuetify" variant="outlined" color="secondary">
-                                    Chip
-                                </v-chip>
-                                <v-chip prepend-icon="mdi-vuetify" variant="outlined" color="secondary">
-                                    Chip
-                                </v-chip>
-                                <v-chip prepend-icon="mdi-vuetify" variant="outlined" color="secondary">
-                                    Chip
-                                </v-chip>
-                                <v-chip prepend-icon="mdi-vuetify" variant="outlined" color="secondary">
-                                    Chip
-                                </v-chip>
-                                <v-chip prepend-icon="mdi-vuetify" variant="outlined" color="secondary">
-                                    Chip
+                                <v-chip v-for="item in project.techIcons" :key="item" :prepend-icon="item.icon" variant="outlined" color="secondary">
+                                    {{ item.name }}
                                 </v-chip>
                             </v-chip-group>
                         </v-sheet>
@@ -124,6 +47,9 @@
 </template>
 
 <script>
+import client from '@/plugins/contentful'
+import { ref, onMounted } from 'vue'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 export default {
     props: ['slug'],
     data() {
@@ -146,6 +72,35 @@ export default {
         let randomPatternIndex = Math.floor(Math.random() * patterns.length)
         let patternModule = await patterns[randomPatternIndex]()
         this.randomPattern = patternModule.default
+    },
+    setup(props) {
+        const project = ref({})
+        const richText = ref('')
+        
+
+        const fetchProject = async (slug) => {
+            try {
+                const response = await client.getEntries({
+                    content_type: 'project',
+                    'fields.slug': slug,
+                })
+
+                if (response.items.length > 0) {
+                    project.value = response.items[0].fields
+                    richText.value = documentToHtmlString(project.value.fullText)
+                    
+                } else {
+                    throw new Error('Project not found')
+                }
+            } catch (error) {
+                console.error('Error fetching project:', error)
+            }
+        }
+        onMounted(() => {
+            fetchProject(props.slug)
+        })
+
+        return { project, richText }
     }
 }
 </script>

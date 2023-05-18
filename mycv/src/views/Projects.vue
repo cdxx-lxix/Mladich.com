@@ -2,26 +2,21 @@
   <v-row no-gutters>
     <v-col cols="12">
       <v-row class="ma-2">
-        <v-col :cols="columns" style="width: 100%;" v-for="i in blocks" :key="i">
+        <v-col :cols="columns" style="width: 100%;" v-for="i in projects" :key="i">
           <v-card>
-            <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px" cover></v-img>
+            <v-img :src="i.fields.previewImage.fields.file.url" height="200px" cover></v-img>
             <v-card-title>
-              window width: {{ $windowWidth }}
+              {{ i.fields.title }}
             </v-card-title>
             <v-card-subtitle>
-              columns: {{ columns }}
+              {{ i.fields.category }}
             </v-card-subtitle>
             <v-card-actions>
-              <router-link :to="{ name: 'The project', params: { slug: i}}">
+              <router-link :to="{ name: 'The project', params: { slug: i.fields.slug } }">
                 <v-btn color="primary" variant="text"> Read more </v-btn>
               </router-link>
               <v-spacer />
-              <v-icon icon="mdi-chevron-up"></v-icon>
-              <v-icon icon="mdi-chevron-up"></v-icon>
-              <v-icon icon="mdi-chevron-up"></v-icon>
-              <v-icon icon="mdi-chevron-up"></v-icon>
-              <v-icon icon="mdi-chevron-up"></v-icon>
-              <v-icon icon="mdi-chevron-up"></v-icon>
+              <v-icon :icon="i.fields.projectIcon"></v-icon>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -35,13 +30,14 @@
 </template>
   
 <script>
-import { ref, computed } from "vue"
+import { ref, computed, onMounted } from "vue"
 import { useWindowSize } from 'vue-window-size'
+import client from '@/plugins/contentful'
 export default {
   setup() {
-    const blocks = ref(8)
     const columns = computed(() => columnCalculator())
     const loading = ref(false)
+    const projects = ref([])
     let windowWidth = useWindowSize().width
 
     function columnCalculator() {
@@ -58,8 +54,20 @@ export default {
           return 12
       }
     }
+    const fetchProjects = async () => {
+      try {
+        const response = await client.getEntries({
+          content_type: 'project',
+          select: 'fields.title,fields.slug,fields.previewImage,fields.category,fields.projectIcon'
+        })
+        projects.value = response.items
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    onMounted(fetchProjects)
 
-    return { blocks, columns, loading }
+    return { columns, loading, projects }
   },
 }
 </script>

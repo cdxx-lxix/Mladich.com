@@ -8,9 +8,10 @@
     "lint": "eslint . --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^16.0.4",
     "@mdi/font": "7.0.96",
+    "contentful": "^10.2.0",
     "dotenv": "^16.0.3",
-    "markdown-it": "^13.0.1",
     "pinia": "^2.0.23",
     "roboto-fontface": "*",
     "vue": "^3.2.38",
