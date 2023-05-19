@@ -3,10 +3,12 @@
     <v-col cols="12">
       <v-row class="ma-2" justify="center" style="height: 80px;">
         <v-col :cols="$windowWidth >= 1280 ? 6 : 12" style="margin: inherit;">
-              <v-text-field clearable :label="$t('projects.searchbar')" variant="outlined" style="height: 100%;" ></v-text-field>
+          <v-text-field @input="filterCards" clearable :label="$t('projects.searchbar')" variant="outlined"
+            style="height: 100%;"></v-text-field>
         </v-col>
       </v-row>
     </v-col>
+    <FetchError v-if="loading"></FetchError>
     <v-col cols="12">
       <v-row class="ma-2">
         <v-col :cols="columns" style="width: 100%;" v-for="i in projects" :key="i">
@@ -40,6 +42,7 @@
 import { ref, computed, onMounted } from "vue"
 import { useWindowSize } from 'vue-window-size'
 import client from '@/plugins/contentful'
+import FetchError from '@/components/FetchError.vue'
 export default {
   setup() {
     const columns = computed(() => columnCalculator())
@@ -70,12 +73,16 @@ export default {
         projects.value = response.items
       } catch (error) {
         console.error(error)
+        loading.value = true
       }
     }
     onMounted(fetchProjects)
 
     return { columns, loading, projects }
   },
+  components: {
+    FetchError
+  }
 }
 </script>
   

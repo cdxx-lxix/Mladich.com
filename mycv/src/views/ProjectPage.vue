@@ -49,7 +49,8 @@
 <script>
 import client from '@/plugins/contentful'
 import { ref, onMounted } from 'vue'
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import { useRouter } from 'vue-router'
 export default {
     props: ['slug'],
     data() {
@@ -76,7 +77,7 @@ export default {
     setup(props) {
         const project = ref({})
         const richText = ref('')
-        
+        const router = useRouter()
 
         const fetchProject = async (slug) => {
             try {
@@ -94,6 +95,7 @@ export default {
                 }
             } catch (error) {
                 console.error('Error fetching project:', error)
+                router.push({ name: '404', params: { catchAll: 'not-found' } })
             }
         }
         onMounted(() => {

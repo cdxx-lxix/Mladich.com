@@ -58,6 +58,11 @@ const routes = [
         path: 'youtube',
         name: 'Youtube',
         component: () => import(/* webpackChunkName: "youtubeRedirect" */'@/views/Youtube.vue'),
+      },
+      {
+        path: '/:catchAll(.*)',
+        name: '404',
+        component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue')
       }
     ],
   },

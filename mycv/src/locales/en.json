@@ -156,5 +156,9 @@
     "projects": {
         "readmore": "Read more",
         "searchbar": "Search..."
+    },
+    "errors": {
+        "fetchError": "Something went wrong. Could not fetch any data.",
+        "fetchErrorNotice": "It's either API is down or one-time random error. Try reloading the page. If it doesn't help, please wait a little bit or contact me."
     }
 }
