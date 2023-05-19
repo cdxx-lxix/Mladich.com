@@ -152,5 +152,9 @@
     "contacts": {
         "title": "",
         "title_ways": "Ways to contact me"
+    },
+    "projects": {
+        "readmore": "Read more",
+        "searchbar": "Search..."
     }
 }

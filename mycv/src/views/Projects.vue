@@ -1,6 +1,13 @@
 <template>
   <v-row no-gutters>
     <v-col cols="12">
+      <v-row class="ma-2" justify="center" style="height: 80px;">
+        <v-col :cols="$windowWidth >= 1280 ? 6 : 12" style="margin: inherit;">
+              <v-text-field clearable :label="$t('projects.searchbar')" variant="outlined" style="height: 100%;" ></v-text-field>
+        </v-col>
+      </v-row>
+    </v-col>
+    <v-col cols="12">
       <v-row class="ma-2">
         <v-col :cols="columns" style="width: 100%;" v-for="i in projects" :key="i">
           <v-card>
@@ -13,7 +20,7 @@
             </v-card-subtitle>
             <v-card-actions>
               <router-link :to="{ name: 'The project', params: { slug: i.fields.slug } }">
-                <v-btn color="primary" variant="text"> Read more </v-btn>
+                <v-btn color="primary" variant="text">{{ $t('projects.readmore') }}</v-btn>
               </router-link>
               <v-spacer />
               <v-icon :icon="i.fields.projectIcon"></v-icon>
