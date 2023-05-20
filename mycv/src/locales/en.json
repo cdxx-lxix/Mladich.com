@@ -157,6 +157,11 @@
         "readmore": "Read more",
         "searchbar": "Search..."
     },
+    "project": {
+        "tech": "Tech used",
+        "galleryTitle": "Gallery",
+        "gallerySubtitle": "Swipe right/left to see more"
+    },
     "errors": {
         "fetchError": "Something went wrong. Could not fetch any data.",
         "fetchErrorNotice": "It's either API is down or one-time random error. Try reloading the page. If it doesn't help, please wait a little bit or contact me."

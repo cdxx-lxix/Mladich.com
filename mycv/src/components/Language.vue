@@ -28,6 +28,11 @@
                 this.$i18n.locale = this.$i18n.locale === 'en' ? 'ru' : 'en'
                 localStorage.setItem('lang', this.$i18n.locale)
                 this.lang = this.$i18n.locale
+                if (this.lang === 'en') { // For contentful API
+                    localStorage.setItem('content', 'en-US')
+                } else {
+                    localStorage.setItem('content', 'ru-RU')
+                }
             },
             // If a user was on the website before then get the language setting if not it's attemp to determine preferred language. Default language: English.
             detectLanguage() {

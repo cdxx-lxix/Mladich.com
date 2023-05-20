@@ -77,7 +77,8 @@ export default {
       try {
         const response = await client.getEntries({
           content_type: 'project',
-          select: 'fields.title,fields.slug,fields.previewImage,fields.category,fields.projectIcon'
+          select: 'fields.title,fields.slug,fields.previewImage,fields.category,fields.projectIcon',
+          locale: localStorage.getItem('content')
         })
         projects.value = response.items
       } catch (error) {
