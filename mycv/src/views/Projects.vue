@@ -3,7 +3,7 @@
     <v-col cols="12">
       <v-row class="ma-2" justify="center" style="height: 80px;">
         <v-col :cols="$windowWidth >= 1280 ? 6 : 12" style="margin: inherit;">
-          <v-text-field @input="filterCards" clearable :label="$t('projects.searchbar')" variant="outlined"
+          <v-text-field v-model="searchText" clearable :label="$t('projects.searchbar')" variant="outlined"
             style="height: 100%;"></v-text-field>
         </v-col>
       </v-row>
@@ -11,7 +11,7 @@
     <FetchError v-if="loading"></FetchError>
     <v-col cols="12">
       <v-row class="ma-2">
-        <v-col :cols="columns" style="width: 100%;" v-for="i in projects" :key="i">
+        <v-col :cols="columns" style="width: 100%;" v-for="i in filteredProjects" :key="i">
           <v-card>
             <v-img :src="i.fields.previewImage.fields.file.url" height="200px" cover></v-img>
             <v-card-title>
@@ -45,10 +45,18 @@ import client from '@/plugins/contentful'
 import FetchError from '@/components/FetchError.vue'
 export default {
   setup() {
-    const columns = computed(() => columnCalculator())
-    const loading = ref(false)
-    const projects = ref([])
-    let windowWidth = useWindowSize().width
+    const columns = computed(() => columnCalculator()) // Adapting the page for proper view on various device width's
+    const loading = ref(false) // True when there is an error in fetching data from api. Also needed for future infinite scroll option
+    const projects = ref([]) // API's answer with an array of projects
+    let windowWidth = useWindowSize().width // Composition API version of $windowWidth
+    const searchText = ref("") // v-model variable for search 
+
+    // Filters project based on the searchbar input and removes unmatched cards.
+    const filteredProjects = computed(() => {
+      if (!searchText.value) return projects.value
+      return projects.value.filter(project => project.fields.title.toLowerCase().includes(searchText.value.toLowerCase())
+        || project.fields.category.toLowerCase().includes(searchText.value.toLowerCase()))
+    })
 
     function columnCalculator() {
       switch (true) {
@@ -64,6 +72,7 @@ export default {
           return 12
       }
     }
+    // Contentful API request 
     const fetchProjects = async () => {
       try {
         const response = await client.getEntries({
@@ -78,7 +87,7 @@ export default {
     }
     onMounted(fetchProjects)
 
-    return { columns, loading, projects }
+    return { columns, loading, projects, searchText, filteredProjects }
   },
   components: {
     FetchError
