@@ -8,6 +8,7 @@
                 <div>
                     {{ $t('errors.fetchErrorNotice') }}
                 </div>
+                <v-progress-linear class="pa-1 mt-2" color="secondary" indeterminate></v-progress-linear>
             </v-col>
         </v-row>
     </v-col>

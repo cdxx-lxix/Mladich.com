@@ -11,6 +11,9 @@
     <FetchError v-if="loading"></FetchError>
     <v-col cols="12">
       <v-row class="ma-2">
+        <v-col cols="12" v-if="noResults && !loading" class="text-center">
+          {{ $t('errors.noResults') }}
+        </v-col>
         <v-col :cols="columns" style="width: 100%;" v-for="i in filteredProjects" :key="i">
           <v-card>
             <v-img :src="i.fields.previewImage.fields.file.url" height="200px" cover></v-img>
@@ -30,33 +33,26 @@
           </v-card>
         </v-col>
       </v-row>
-      <div cols="12" class="ma-5" v-if="loading">
-        <v-progress-linear color="secondary" indeterminate></v-progress-linear>
-      </div>
     </v-col>
-
   </v-row>
 </template>
   
 <script>
 import { ref, computed, onMounted } from "vue"
 import { useWindowSize } from 'vue-window-size'
-import client from '@/plugins/contentful'
+import fetchContent from '@/plugins/apiFunctions'
+import useSearch from "@/plugins/searchEngine"
 import FetchError from '@/components/FetchError.vue'
 export default {
   setup() {
     const columns = computed(() => columnCalculator()) // Adapting the page for proper view on various device width's
     const loading = ref(false) // True when there is an error in fetching data from api. Also needed for future infinite scroll option
-    const projects = ref([]) // API's answer with an array of projects
+    const searchText = ref('') // Search query from v-model
+    const projects = ref([]) // Array of projects from the API
     let windowWidth = useWindowSize().width // Composition API version of $windowWidth
-    const searchText = ref("") // v-model variable for search 
-
-    // Filters project based on the searchbar input and removes unmatched cards.
-    const filteredProjects = computed(() => {
-      if (!searchText.value) return projects.value
-      return projects.value.filter(project => project.fields.title.toLowerCase().includes(searchText.value.toLowerCase())
-        || project.fields.category.toLowerCase().includes(searchText.value.toLowerCase()))
-    })
+ 
+    const { filteredContent: filteredProjects } = useSearch(projects, searchText) // Search 
+    const noResults = computed(() => filteredProjects.value.length === 0) // Shows card that says of empty search results
 
     function columnCalculator() {
       switch (true) {
@@ -73,22 +69,14 @@ export default {
       }
     }
     // Contentful API request 
-    const fetchProjects = async () => {
-      try {
-        const response = await client.getEntries({
-          content_type: 'project',
-          select: 'fields.title,fields.slug,fields.previewImage,fields.category,fields.projectIcon',
-          locale: localStorage.getItem('content')
-        })
-        projects.value = response.items
-      } catch (error) {
-        console.error(error)
-        loading.value = true
-      }
-    }
-    onMounted(fetchProjects)
-
-    return { columns, loading, projects, searchText, filteredProjects }
+    onMounted(async () => {
+        try {
+          projects.value = await fetchContent('project', 'fields.title,fields.slug,fields.previewImage,fields.category,fields.projectIcon')
+        } catch (error) {
+          loading.value = true
+        }
+      })
+    return { columns, loading, projects, searchText, filteredProjects, noResults }
   },
   components: {
     FetchError
