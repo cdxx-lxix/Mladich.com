@@ -87,7 +87,7 @@
 <script>
 import { useWindowSize } from 'vue-window-size'
 import { computed, ref, onMounted } from 'vue'
-import client from '@/plugins/contentful'
+import fetchContent from '@/plugins/apiFunctions'
 export default {
   setup() {
     let windowWidth = useWindowSize().width // Composition API version of $windowWidth
@@ -110,21 +110,14 @@ export default {
       return guides.value.filter(guide => guide.fields.title.toLowerCase().includes(searchText.value.toLowerCase())
         || guide.fields.category.toLowerCase().includes(searchText.value.toLowerCase()))
     })
-    // Contentful API request 
-    const fetchGuides = async () => {
-      try {
-        const response = await client.getEntries({
-          content_type: 'guides',
-          select: 'fields.title, fields.slug, fields.imageHeader, fields.category, fields.shortText',
-          locale: localStorage.getItem('content')
-        })
-        guides.value = response.items
-      } catch (error) {
-        console.error(error)
-        loading.value = true
-      }
-    }
-    onMounted(fetchGuides)
+      // Contentful API request 
+      onMounted(async () => {
+        try {
+          guides.value = await fetchContent('guides', 'fields.title, fields.slug, fields.imageHeader, fields.category, fields.shortText')
+        } catch (error) {
+          loading.value = true
+        }
+      })
     return { responsive, categorySelection, loading, guides, searchText, filteredGuides }
   }
 }

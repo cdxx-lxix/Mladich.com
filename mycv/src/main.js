@@ -22,7 +22,7 @@ const app = createApp(App)
 const metaManager = createMetaManager()
 
 registerPlugins(app)
-app.use(i18n);
+app.use(i18n)
 app.use(metaManager)
 app.use(VueWindowSizePlugin)
 
