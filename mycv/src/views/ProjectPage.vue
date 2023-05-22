@@ -2,37 +2,31 @@
     <v-row>
         <v-col cols="12">
             <v-card class="ma-5">
-                <v-img :src="randomPattern" height="200" cover></v-img>
-                <v-row>
-                    <v-col cols="12">
-                        <v-list-item class="mt-2">
-                            <template v-slot:prepend>
-                                <div class="text-h4">
-                                    <span class="me-1">{{ project.title }} - </span>
-                                    <v-divider :thickness="2" vertical color="secondary"></v-divider>
-                                    <v-icon :icon="project.projectIcon"></v-icon>
-                                    <div class="text-caption">{{ project.category }}</div>
-                                </div>
-                            </template>
-                            <template v-slot:append>
-                                <v-btn variant="tonal" @click="this.$router.push({ name: 'My projects' })">Back</v-btn>
-                                <v-list-item></v-list-item>
-                                <v-btn variant="tonal" color="secondary" :href="project.repo"
-                                    :disabled="!project.repo ? true : false">Visit repo</v-btn>
-                                <v-list-item></v-list-item>
-                                <v-btn variant="tonal" color="primary" :href="project.website"
-                                    :disabled="!project.website ? true : false">Visit website</v-btn>
-                            </template>
-                        </v-list-item>
-                    </v-col>
-                </v-row>
+                <v-img :src="randomPattern" height="200" cover>
+                    <div class="my-title text-white">
+                        <div class="text-h4">
+                            <span class="me-1">{{ project.title }}</span>
+                            <v-divider :thickness="2" vertical color="secondary"></v-divider>
+                            
+                            <div class="text-h6">{{ project.category }} / <v-icon :icon="project.projectIcon"></v-icon></div>
+                        </div>
+                        <v-btn-group divided width="100%" class="my-12" variant="tonal">
+                            <v-btn prepend-icon="mdi-arrow-left" variant="flat" @click="this.$router.push({ name: 'My projects' })">{{ $t('project.backbtn') }}</v-btn>
+                            <v-btn prepend-icon="custom:gitIcon" color="secondary" :href="project.repo"
+                                :disabled="!project.repo ? true : false">{{ $t('project.repobtn') }}</v-btn>
+                            <v-btn prepend-icon="mdi-web" color="primary" :href="project.website" class="text-white"
+                            :disabled="!project.website ? true : false">{{ $t('project.sitebtn') }}</v-btn>
+                        </v-btn-group>
+                    </div>
+                </v-img>
                 <v-row class="ma-1">
                     <v-col :cols="columns" variant="outlined">
                         <v-sheet border="md" class="text-body-1 pa-4" v-html="richText"></v-sheet>
                     </v-col>
                     <v-col :cols="columns">
                         <v-sheet border="md" class="pa-4">
-                            <v-carousel progress="primary" hide-delimiters mandatory touch height="auto" v-if="project && project.gallery && project.gallery.length > 0">
+                            <v-carousel progress="primary" hide-delimiters mandatory touch height="auto"
+                                v-if="project && project.gallery && project.gallery.length > 0">
                                 <v-carousel-item v-for="image in project.gallery" :key="image.fields.title"
                                     :aspect-ratio="16 / 9">
                                     <v-img class="d-flex fill-height justify-center align-center"
@@ -100,6 +94,7 @@ export default {
                 const response = await client.getEntries({
                     content_type: 'project',
                     'fields.slug': slug,
+                    locale: localStorage.getItem('content')
                 })
 
                 if (response.items.length > 0) {
@@ -133,13 +128,23 @@ export default {
 </script>
 
 <style>
-ol {
-    padding: 20px;
-}
-blockquote {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-left: 5px solid;
-    padding-left: 8px;
-}
+    ol {
+        padding: 20px;
+    }
+
+    ul {
+        padding: 20px;
+    }
+
+    blockquote {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-left: 5px solid;
+        padding-left: 8px;
+    }
+    .my-title {
+        background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(18,18,18,0.8) 25%, rgba(255,255,255,0) 100%);
+        height: 100%;
+        padding: 15px;
+    }
 </style>

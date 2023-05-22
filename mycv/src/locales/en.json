@@ -159,8 +159,9 @@
     },
     "project": {
         "tech": "Tech used",
-        "galleryTitle": "Gallery",
-        "gallerySubtitle": "Swipe right/left to see more"
+        "backbtn": "Back",
+        "repobtn": "Visit repo",
+        "sitebtn": "Visit website"
     },
     "errors": {
         "fetchError": "Something went wrong. Could not fetch any data.",
