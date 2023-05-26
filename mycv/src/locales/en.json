@@ -169,5 +169,14 @@
         "noResults": "No results",
         "404_title": "Page not found",
         "404_meta": "There is no such page on this website"
+    },
+    "meta": {
+        "guides_desc": "What was once my pain is now an experience and a guide to share :)",
+        "projects_desc": "Projects that I've made walking down the path of a developer",
+        "thisproject_title": "My project: ",
+        "home_desc": "Personal CV page of Alex Mladich",
+        "home_title": "Alex Mladich - Web Developer",
+        "aboutme_desc": "Alex Mladich's CV page. Skills, bio, experience and education.",
+        "contacts_desc": "Most relevant ways to contact me."
     }
 }

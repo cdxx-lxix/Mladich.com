@@ -43,6 +43,8 @@ import { useWindowSize } from 'vue-window-size'
 import fetchContent from '@/plugins/apiFunctions'
 import useSearch from "@/plugins/searchEngine"
 import FetchError from '@/components/FetchError.vue'
+import { useHead } from '@vueuse/head'
+import { useI18n } from 'vue-i18n'
 export default {
   setup() {
     const columns = computed(() => columnCalculator()) // Adapting the page for proper view on various device width's
@@ -50,7 +52,7 @@ export default {
     const searchText = ref('') // Search query from v-model
     const projects = ref([]) // Array of projects from the API
     let windowWidth = useWindowSize().width // Composition API version of $windowWidth
- 
+
     const { filteredContent: filteredProjects } = useSearch(projects, searchText) // Search 
     const noResults = computed(() => filteredProjects.value.length === 0) // Shows card that says of empty search results
 
@@ -70,12 +72,26 @@ export default {
     }
     // Contentful API request 
     onMounted(async () => {
-        try {
-          projects.value = await fetchContent('project', 'fields.title,fields.slug,fields.previewImage,fields.category,fields.projectIcon')
-        } catch (error) {
-          loading.value = true
+      try {
+        projects.value = await fetchContent('project', 'fields.title,fields.slug,fields.previewImage,fields.category,fields.projectIcon')
+      } catch (error) {
+        loading.value = true
+      }
+    })
+    const { t } = useI18n()
+    useHead({
+      title: t('menu.projects'),
+      meta: [
+        {
+          name: 'description',
+          content: t('meta.projects_desc'),
+        },
+        {
+          name: 'lang',
+          content: localStorage.getItem('lang')
         }
-      })
+      ],
+    })
     return { columns, loading, projects, searchText, filteredProjects, noResults }
   },
   components: {

@@ -19,7 +19,7 @@
         </v-row>
         <v-card :title="$t('contacts.title_ways')" class="pa-4">
           <v-timeline direction="horizontal" line-inset="12">
-            <v-timeline-item v-for="option in options" :key="option" :dot-color="currentTheme === 'dark' ? 'indigo-accent-4' : 'teal-accent-4'" fill-dot>
+            <v-timeline-item v-for="option in options" :key="option" dot-color="primary" fill-dot>
                 <template v-slot:icon>
                   <v-avatar :icon="option.icon" class="ma-2"></v-avatar>
                 </template>
@@ -36,8 +36,8 @@
 </template>
   
 <script >
-import { computed } from 'vue'
-import { useAppStore } from '@/store/app'
+import { useHead } from '@vueuse/head'
+import { useI18n } from 'vue-i18n'
 export default {
   data() {
     return {
@@ -54,13 +54,20 @@ export default {
     }
   },
   setup() {
-    // Retrieve value from global storage to change my v-sheets and other things accordingly v-icon--size-x-large
-    const store = useAppStore()
-    const currentTheme = computed(() => store.currentUsersTheme)
-
-    return {
-      currentTheme
-    }
+    const { t } = useI18n()
+    useHead({
+      title: t('menu.contacts'),
+      meta: [
+        {
+          name: 'description',
+          content: t('meta.contacts_desc'),
+        },
+        {
+          name: 'lang',
+          content: localStorage.getItem('lang')
+        }
+      ],
+    })
   }
 }
 </script>

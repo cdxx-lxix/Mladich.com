@@ -83,6 +83,7 @@
 import myPhoto from '../assets/images/myPhoto.jpg'
 import { reactive, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '@vueuse/head'
 export default {
   data() {
     return {
@@ -149,6 +150,19 @@ export default {
     const experiences = reactive(['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth'])
     const localizedExperiences = computed(() => {
       return experiences.map(exp => t('experience.' + exp))
+    })
+    useHead({
+      title: t('menu.aboutme'),
+      meta: [
+        {
+          name: 'description',
+          content: t('meta.aboutme_desc'),
+        },
+        {
+          name: 'lang',
+          content: localStorage.getItem('lang')
+        }
+      ],
     })
 
     return {

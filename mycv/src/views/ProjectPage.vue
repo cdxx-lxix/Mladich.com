@@ -7,15 +7,17 @@
                         <div class="text-h4">
                             <span class="me-1">{{ project.title }}</span>
                             <v-divider :thickness="2" vertical color="secondary"></v-divider>
-                            
-                            <div class="text-h6">{{ project.category }} / <v-icon :icon="project.projectIcon"></v-icon></div>
+
+                            <div class="text-h6">{{ project.category }} / <v-icon :icon="project.projectIcon"></v-icon>
+                            </div>
                         </div>
                         <v-btn-group divided width="100%" class="my-12" variant="tonal">
-                            <v-btn prepend-icon="mdi-arrow-left" variant="flat" @click="this.$router.push({ name: 'My projects' })">{{ $t('project.backbtn') }}</v-btn>
+                            <v-btn prepend-icon="mdi-arrow-left" variant="flat"
+                                @click="this.$router.push({ name: 'My projects' })">{{ $t('project.backbtn') }}</v-btn>
                             <v-btn prepend-icon="custom:gitIcon" color="secondary" :href="project.repo"
                                 :disabled="!project.repo ? true : false">{{ $t('project.repobtn') }}</v-btn>
                             <v-btn prepend-icon="mdi-web" color="primary" :href="project.website" class="text-white"
-                            :disabled="!project.website ? true : false">{{ $t('project.sitebtn') }}</v-btn>
+                                :disabled="!project.website ? true : false">{{ $t('project.sitebtn') }}</v-btn>
                         </v-btn-group>
                     </div>
                 </v-img>
@@ -55,12 +57,17 @@
 
 <script>
 import client from '@/plugins/contentful'
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { useRouter } from 'vue-router'
 import { useWindowSize } from 'vue-window-size'
+import { useHead } from '@vueuse/head'
+import { useI18n } from 'vue-i18n'
 export default {
-    props: ['slug'],
+    props: {
+        slug: String,
+        header: String
+    },
     data() {
         return {
             randomPattern: ''
@@ -121,30 +128,46 @@ export default {
         onMounted(() => {
             fetchProject(props.slug)
         })
-
+        const { t } = useI18n()
+        watch(project, () => {
+            useHead({
+                title: t('meta.thisproject_title') + project.value.title,
+                meta: [
+                    {
+                        name: 'description',
+                        content: richText.value,
+                    },
+                    {
+                        name: 'lang',
+                        content: localStorage.getItem('lang')
+                    }
+                ],
+            })
+        }, { deep: true })
         return { project, richText, columns }
     }
 }
 </script>
 
 <style>
-    ol {
-        padding: 20px;
-    }
+ol {
+    padding: 20px;
+}
 
-    ul {
-        padding: 20px;
-    }
+ul {
+    padding: 20px;
+}
 
-    blockquote {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        border-left: 5px solid;
-        padding-left: 8px;
-    }
-    .my-title {
-        background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(18,18,18,0.8) 25%, rgba(255,255,255,0) 100%);
-        height: 100%;
-        padding: 15px;
-    }
+blockquote {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-left: 5px solid;
+    padding-left: 8px;
+}
+
+.my-title {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(18, 18, 18, 0.8) 25%, rgba(255, 255, 255, 0) 100%);
+    height: 100%;
+    padding: 15px;
+}
 </style>

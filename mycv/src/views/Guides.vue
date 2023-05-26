@@ -33,7 +33,7 @@
 
           <v-card class="mb-6" height="450" v-for="i in filteredGuides" :key="i">
             <v-img cover height="100" :src="i.fields.imageHeader.fields.file.url">
-              <v-toolbar color="transparent" >
+              <v-toolbar color="transparent">
                 <template v-slot:prepend>
                   <v-btn @click="useShare(i.fields.slug, i.fields.title)" icon="mdi-share-variant"></v-btn>
                 </template>
@@ -67,6 +67,8 @@ import fetchContent from '@/plugins/apiFunctions'
 import useSearch from "@/plugins/searchEngine"
 import { useShare } from '@/plugins/share'
 import FetchError from '@/components/FetchError.vue'
+import { useHead } from '@vueuse/head'
+import { useI18n } from 'vue-i18n'
 export default {
   setup() {
     let windowWidth = useWindowSize().width // Composition API version of $windowWidth
@@ -93,6 +95,20 @@ export default {
       } catch (error) {
         loading.value = true
       }
+    })
+    const { t } = useI18n()
+    useHead({
+      title: t('menu.guides'),
+      meta: [
+        {
+          name: 'description',
+          content: t('meta.guides_desc'),
+        },
+        {
+          name: 'lang',
+          content: localStorage.getItem('lang')
+        }
+      ],
     })
     return { responsive, loading, guides, searchText, filteredGuides, noResults, useShare }
   },

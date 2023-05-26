@@ -26,6 +26,10 @@ export default {
                     name: 'description',
                     content: t('errors.404_meta'),
                 },
+                {
+                  name: 'lang',
+                  content: localStorage.getItem('lang')
+                }
             ],
         })
     }
