@@ -4,7 +4,7 @@
       <v-row class="ma-2">
         <v-col :cols="responsive.rightBar" :order="responsive.order" :class="responsive.showSticky">
           <v-card class="pa-4">
-            <v-text-field clearable :label="$t('projects.searchbar')" variant="outlined"
+            <v-text-field v-model="searchText" clearable :label="$t('projects.searchbar')" variant="outlined"
               style="height: 100%;"></v-text-field>
             <v-chip-group v-model="searchText" selected-class="text-secondary" mandatory>
               <v-chip v-for="chip in chips" :key="chip.value" :value="chip.value">
@@ -17,7 +17,14 @@
         <v-col :cols="responsive.leftBar">
 
           <v-card class="mb-6" height="450" v-if="noResults && !loading">
-            {{ $t('errors.noResults') }}
+            <v-sheet height="100%" tile>
+              <div class="d-flex fill-height justify-center align-center">
+                <div class="d-flex fill-height justify-center align-center">
+                  <v-icon class="mb-5" color="error" icon="mdi-alert-circle" size="112"></v-icon>
+                  <h2 class="text-h5 mb-6">{{ $t('errors.noResults') }}</h2>
+                </div>
+              </div>
+            </v-sheet>
           </v-card>
 
           <v-card class="mb-6" v-if="loading" align-self="center">
@@ -26,10 +33,11 @@
 
           <v-card class="mb-6" height="450" v-for="i in filteredGuides" :key="i">
             <v-img cover height="100" :src="i.fields.imageHeader.fields.file.url">
-              <v-toolbar color="transparent">
+              <v-toolbar color="transparent" >
                 <template v-slot:prepend>
-                  <v-btn icon="mdi-star"></v-btn>
+                  <v-btn icon="mdi-share-variant"></v-btn>
                 </template>
+                <v-toolbar-title>{{ i.fields.creationDate }}</v-toolbar-title>
               </v-toolbar>
             </v-img>
             <div class="pa-4">
@@ -42,10 +50,10 @@
               <router-link :to="{ name: 'The project', params: { slug: i.fields.slug } }">
                 <v-btn class="px-5" prepend-icon="mdi-book-open" variant="tonal">Read</v-btn>
               </router-link>
-              <v-btn class="px-5" prepend-icon="mdi-share" variant="tonal">Share</v-btn>
               <v-btn class="px-5" prepend-icon="mdi-eye" variant="flat" style="pointer-events: none;">10</v-btn>
             </v-card-actions>
           </v-card>
+
         </v-col>
       </v-row>
     </v-col>
@@ -80,7 +88,7 @@ export default {
     // Contentful API request 
     onMounted(async () => {
       try {
-        guides.value = await fetchContent('guides', 'fields.title, fields.slug, fields.imageHeader, fields.category, fields.shortText')
+        guides.value = await fetchContent('guides', 'fields.title, fields.slug, fields.imageHeader, fields.category, fields.shortText, fields.creationDate')
       } catch (error) {
         loading.value = true
       }

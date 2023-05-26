@@ -166,6 +166,8 @@
     "errors": {
         "fetchError": "Something went wrong. Could not fetch any data.",
         "fetchErrorNotice": "It's either API is down or one-time random error. Try reloading the page. If it doesn't help, please wait a little bit or contact me.",
-        "noResults": "Search yeald no results"
+        "noResults": "No results",
+        "404_title": "Page not found",
+        "404_meta": "There is no such page on this website"
     }
 }
