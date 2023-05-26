@@ -35,7 +35,7 @@
             <v-img cover height="100" :src="i.fields.imageHeader.fields.file.url">
               <v-toolbar color="transparent" >
                 <template v-slot:prepend>
-                  <v-btn icon="mdi-share-variant"></v-btn>
+                  <v-btn @click="useShare(i.fields.slug, i.fields.title)" icon="mdi-share-variant"></v-btn>
                 </template>
                 <v-toolbar-title>{{ i.fields.creationDate }}</v-toolbar-title>
               </v-toolbar>
@@ -65,6 +65,7 @@ import { useWindowSize } from 'vue-window-size'
 import { computed, ref, onMounted } from 'vue'
 import fetchContent from '@/plugins/apiFunctions'
 import useSearch from "@/plugins/searchEngine"
+import { useShare } from '@/plugins/share'
 import FetchError from '@/components/FetchError.vue'
 export default {
   setup() {
@@ -93,7 +94,7 @@ export default {
         loading.value = true
       }
     })
-    return { responsive, loading, guides, searchText, filteredGuides, noResults }
+    return { responsive, loading, guides, searchText, filteredGuides, noResults, useShare }
   },
   components: {
     FetchError
