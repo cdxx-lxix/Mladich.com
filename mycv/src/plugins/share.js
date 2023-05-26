@@ -13,7 +13,6 @@ export const useShare = (url, title) => {
       .writeText(constructedUrl)
       .then(() => {
         console.log("URL copied to clipboard")
-        snackbar()
       })
       .catch((err) => {
         console.error("Failed to copy URL:", err)
