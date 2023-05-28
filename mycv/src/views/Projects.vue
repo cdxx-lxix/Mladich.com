@@ -40,7 +40,7 @@
 <script>
 import { ref, computed, onMounted } from "vue"
 import { useWindowSize } from 'vue-window-size'
-import fetchContent from '@/plugins/apiFunctions'
+import { fetchContent } from '@/plugins/apiFunctions'
 import useSearch from "@/plugins/searchEngine"
 import FetchError from '@/components/FetchError.vue'
 import { useHead } from '@vueuse/head'

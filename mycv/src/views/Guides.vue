@@ -47,7 +47,7 @@
               <div class="text-body1 card-text">{{ i.fields.shortText }}</div>
             </div>
             <v-card-actions class="pa-2 ma-2">
-              <router-link :to="{ name: 'The project', params: { slug: i.fields.slug } }">
+              <router-link :to="{ name: 'The guide', params: { slug: i.fields.slug } }">
                 <v-btn class="px-5" prepend-icon="mdi-book-open" variant="tonal">Read</v-btn>
               </router-link>
               <v-btn class="px-5" prepend-icon="mdi-eye" variant="flat" style="pointer-events: none;">10</v-btn>
@@ -63,7 +63,7 @@
 <script>
 import { useWindowSize } from 'vue-window-size'
 import { computed, ref, onMounted } from 'vue'
-import fetchContent from '@/plugins/apiFunctions'
+import { fetchContent } from '@/plugins/apiFunctions'
 import useSearch from "@/plugins/searchEngine"
 import { useShare } from '@/plugins/share'
 import FetchError from '@/components/FetchError.vue'

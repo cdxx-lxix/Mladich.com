@@ -56,17 +56,14 @@
 </template>
 
 <script>
-import client from '@/plugins/contentful'
 import { ref, onMounted, computed, watch } from 'vue'
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
-import { useRouter } from 'vue-router'
 import { useWindowSize } from 'vue-window-size'
 import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n'
+import { fetchOne } from '@/plugins/apiFunctions'
 export default {
     props: {
-        slug: String,
-        header: String
+        slug: String
     },
     data() {
         return {
@@ -92,31 +89,18 @@ export default {
     setup(props) {
         const project = ref({})
         const richText = ref('')
-        const router = useRouter()
         const columns = computed(() => columnCalculator())
         let windowWidth = useWindowSize().width // Composition API version of $windowWidth
 
-        const fetchProject = async (slug) => {
+        onMounted(async () => {
             try {
-                const response = await client.getEntries({
-                    content_type: 'project',
-                    'fields.slug': slug,
-                    locale: localStorage.getItem('content')
-                })
-
-                if (response.items.length > 0) {
-                    project.value = response.items[0].fields
-                    richText.value = documentToHtmlString(project.value.fullText)
-
-                } else {
-                    throw new Error('Project not found')
-                }
+                const fetched = await fetchOne('project', props.slug)
+                project.value = fetched.contentBody
+                richText.value = fetched.convertedText
             } catch (error) {
-                console.error('Error fetching project:', error)
-                router.push({ name: '404', params: { catchAll: 'not-found' } })
+                loading.value = true
             }
-        }
-
+        })
         function columnCalculator() {
             switch (true) {
                 case windowWidth.value >= 1280:
@@ -125,9 +109,6 @@ export default {
                     return 12
             }
         }
-        onMounted(() => {
-            fetchProject(props.slug)
-        })
         const { t } = useI18n()
         watch(project, () => {
             useHead({

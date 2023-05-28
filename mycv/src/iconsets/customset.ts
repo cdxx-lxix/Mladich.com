@@ -10,6 +10,7 @@ import mailIcon from '@/assets/icons/Contacts/mail-icon.vue'
 import telegramIcon from '@/assets/icons/Contacts/telegram-icon.vue'
 import vkontakteIcon from '@/assets/icons/Contacts/vkontakte-icon.vue'
 import whatsappIcon from '@/assets/icons/Contacts/whatsapp-icon.vue'
+import youtubeIcon from '@/assets/icons/Contacts/youtube-icon.vue'
 
 // Frameworks icons
 import bootstrapIcon from '@/assets/icons/Software/bootstrap-icon.vue'
@@ -60,6 +61,7 @@ const myIconPack: any = {
   telegramIcon,
   vkontakteIcon,
   whatsappIcon,
+  youtubeIcon,
 
   bootstrapIcon,
   quasarIcon,
