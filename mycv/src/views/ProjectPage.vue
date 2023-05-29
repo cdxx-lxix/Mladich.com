@@ -23,7 +23,7 @@
                 </v-img>
                 <v-row class="ma-1">
                     <v-col :cols="columns" variant="outlined">
-                        <v-sheet border="md" class="text-body-1 pa-4" v-html="richText"></v-sheet>
+                        <v-sheet border="md" class="text-body-1 pa-4 richtext" v-html="richText"></v-sheet>
                     </v-col>
                     <v-col :cols="columns">
                         <v-sheet border="md" class="pa-4">
@@ -50,6 +50,11 @@
                         </v-sheet>
                     </v-col>
                 </v-row>
+            </v-card>
+            <v-card v-if="isLoading">
+                <div class="text-center">
+                    <v-progress-circular :size="50" color="primary" indeterminate></v-progress-circular>
+                </div>
             </v-card>
         </v-col>
     </v-row>
@@ -90,6 +95,7 @@ export default {
         const project = ref({})
         const richText = ref('')
         const columns = computed(() => columnCalculator())
+        const isLoading = computed(() => project.value.length === 0 ? true : false)
         let windowWidth = useWindowSize().width // Composition API version of $windowWidth
 
         onMounted(async () => {
@@ -98,7 +104,7 @@ export default {
                 project.value = fetched.contentBody
                 richText.value = fetched.convertedText
             } catch (error) {
-                loading.value = true
+                console.log(error)
             }
         })
         function columnCalculator() {
@@ -125,26 +131,13 @@ export default {
                 ],
             })
         }, { deep: true })
-        return { project, richText, columns }
+        return { project, richText, columns, isLoading }
     }
 }
 </script>
 
-<style>
-ol {
-    padding: 20px;
-}
-
-ul {
-    padding: 20px;
-}
-
-blockquote {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-left: 5px solid;
-    padding-left: 8px;
-}
+<style scoped>
+@import url(@/css/richtext.css);
 
 .my-title {
     background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(18, 18, 18, 0.8) 25%, rgba(255, 255, 255, 0) 100%);
