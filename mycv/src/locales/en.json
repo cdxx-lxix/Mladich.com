@@ -171,7 +171,8 @@
         "fetchErrorNotice": "It's either API is down or one-time random error. Try reloading the page. If it doesn't help, please wait a little bit or contact me.",
         "noResults": "No results",
         "404_title": "Page not found",
-        "404_meta": "There is no such page on this website"
+        "404_meta": "There is no such page on this website",
+        "redirect": "You are being redirected to my YouTube channel..."
     },
     "meta": {
         "guides_desc": "What was once my pain is now an experience and a guide to share :)",

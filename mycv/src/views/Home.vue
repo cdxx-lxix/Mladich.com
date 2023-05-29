@@ -1,12 +1,11 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <v-row class="d-flex justify-space-evenly my-background">
-    <v-sheet v-for="menuItem in menuItems" :key="menuItem.id" class="flex-grow-1 flex-shrink-0 h-screen custom-col"
-      :class="currentTheme === 'dark' ? 'transparent-sheet' : 'transparent-sheetLight'"
+  <v-row class="d-flex justify-space-evenly" :class="decorator.background, reactor.rowClass">
+    <v-sheet v-for="menuItem in menuItems" :key="menuItem.id" class="flex-grow-1 flex-shrink-0 h-screen"
+      :class="decorator.sheets, reactor.sheetsClass"
       @click="navigateTo(menuItem.route)" @mouseover="handleMouseOver" @mouseout="handleMouseOut">
       <v-container fluid class="fill-height">
-        <v-row class="fill-height text-h5 flex" align="center" justify="center" style="flex-direction: column;">
-          <v-icon :icon="menuItem.icon"></v-icon>
+        <v-row class="fill-height text-h5 flex flex-director" align="center" justify="center">
+          <v-icon v-if="reactor.icons" :icon="menuItem.icon"></v-icon>
           <div class="no-selection">{{ $t(menuItem.text) }}</div>
         </v-row>
       </v-container>
@@ -20,12 +19,35 @@ import { useAppStore } from '@/store/app'
 import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import { useWindowSize } from 'vue-window-size'
 
 export default {
   setup() {
     const router = useRouter()
+    const store = useAppStore()
+    const currentTheme = computed(() => store.currentUsersTheme)
+    const decorator = computed(() => reactToTheme())
+    const reactor = computed(() => reactToDevice())
+    let windowWidth = useWindowSize().width
     const navigateTo = (route) => {
       router.push({ name: route })
+    }
+
+    function reactToTheme() {
+      switch(true) {
+        case currentTheme.value === 'dark':
+          return { sheets: 'transparent-sheet', background: 'my-background-dark' }
+        default:
+          return { sheets: 'transparent-sheetLight', background: 'my-background-light' }
+      }
+    }
+    function reactToDevice() {
+      switch(true) {
+        case windowWidth.value >= 1280:
+          return { sheetsClass: 'custom-col', rowClass: 'my-background', icons: true }
+        default:
+          return { sheetsClass: 'custom-row', rowClass: 'my-background-mobile', icons: false }
+      }
     }
 
     const handleMouseOver = (event) => {
@@ -48,8 +70,6 @@ export default {
       }
     }
 
-    const store = useAppStore()
-    const currentTheme = computed(() => store.currentUsersTheme)
     const { t } = useI18n()
     useHead({
       title: t('meta.home_title'),
@@ -73,7 +93,6 @@ export default {
       { id: 5, icon: 'mdi-card-account-mail', text: 'menu.contacts', route: 'Contacts' }
     ])
 
-    const iconSize = ref('')
 
     return {
       currentTheme,
@@ -81,17 +100,27 @@ export default {
       handleMouseOver,
       handleMouseOut,
       menuItems,
-      iconSize
+      decorator,
+      reactor
     }
   },
 }
 </script>
 
-<style>
+<style scoped>
+.flex-director {
+  flex-direction: column;
+}
 .custom-col {
   flex: 1 0 20%;
   max-width: 20%;
-  height: 95vh !important;
+  height: calc(100vh - 57px) !important;
+}
+
+.custom-row {
+  flex: 0 1 100%;
+  max-width: 100%;
+  max-height: 20%;
 }
 
 .transparent-sheet {
@@ -118,10 +147,21 @@ export default {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+.my-background-dark {
+  background-image: url('src/assets/CorporationLight.svg');
+}
+.my-background-light {
+  background-image: url('src/assets/CorporationDark.svg');
+}
 .my-background {
-  background-image: var(--themedBackground);
   background-position: center;
   height: 100%;
+  width: 101vw;
+}
+
+.my-background-mobile {
+  background-position: center;
+  height: calc(100vh - 57px) !important;
   width: 101vw;
 }
 
@@ -132,4 +172,5 @@ export default {
 
 .hoveredOver {
   font-size: larger;
-}</style>
+}
+</style>
