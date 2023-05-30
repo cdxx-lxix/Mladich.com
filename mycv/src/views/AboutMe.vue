@@ -3,8 +3,8 @@
     <v-col cols="12">
       <v-row class="ma-2">
 
-        <v-col cols="4">
-          <v-card class="ma-2 pa-2">
+        <v-col cols="12" lg="4" md="6" class="d-flex flex-director">
+          <v-card class="ma-2 pa-2 flex-grow-1">
             <v-img :src="photo" cover class="text-white">
               <v-card-title>{{ $t('aboutme.c1_title') }}</v-card-title>
             </v-img>
@@ -25,8 +25,8 @@
           </v-card>
         </v-col>
 
-        <v-col cols="4">
-          <v-card class="ma-2 pa-2">
+        <v-col cols="12" lg="4" md="6" class="d-flex flex-director">
+          <v-card class="ma-2 pa-2 flex-grow-1">
             <v-card-item>
               <v-card-title>{{ $t('aboutme.c2_title') }}</v-card-title>
             </v-card-item>
@@ -47,18 +47,15 @@
           </v-card>
         </v-col>
 
-        <v-col cols="4">
-          <v-card class="ma-2 pa-2">
+        <v-col cols="12" lg="4" md="6" class="d-flex flex-director">
+          <v-card class="ma-2 pa-2 flex-grow-1">
             <v-card-title>{{ $t('aboutme.c3_title') }}</v-card-title>
             <v-card-subtitle>{{ $t('aboutme.c3_subtitle') }}</v-card-subtitle>
           </v-card>
         </v-col>
 
-      </v-row>
-
-      <v-row class="ma-2">
-        <v-col cols="4" v-for="skill in skills">
-          <v-card class="ma-2 pa-2">
+        <v-col cols="12" lg="4" md="6" v-for="skill in skills" class="d-flex flex-director">
+          <v-card class="ma-2 pa-2 flex-grow-1">
             <v-card-title>{{ $t(skill.title) }}</v-card-title>
             <v-card-subtitle>{{ $t(skill.subtitle) }}</v-card-subtitle>
             <v-list lines="one" density="compact">
@@ -74,6 +71,7 @@
             </v-list>
           </v-card>
         </v-col>
+
       </v-row>
     </v-col>
   </v-row>
