@@ -12,20 +12,20 @@
                             </div>
                         </div>
                         <v-btn-group divided width="100%" class="my-12" variant="tonal">
-                            <v-btn prepend-icon="mdi-arrow-left" variant="flat"
+                            <v-btn prepend-icon="mdi-arrow-left" variant="flat" size="small"
                                 @click="this.$router.push({ name: 'My projects' })">{{ $t('project.backbtn') }}</v-btn>
-                            <v-btn prepend-icon="custom:gitIcon" color="secondary" :href="project.repo"
+                            <v-btn prepend-icon="custom:gitIcon" color="secondary" :href="project.repo" size="small"
                                 :disabled="!project.repo ? true : false">{{ $t('project.repobtn') }}</v-btn>
-                            <v-btn prepend-icon="mdi-web" color="primary" :href="project.website" class="text-white"
+                            <v-btn prepend-icon="mdi-web" color="primary" :href="project.website" class="text-white" size="small"
                                 :disabled="!project.website ? true : false">{{ $t('project.sitebtn') }}</v-btn>
                         </v-btn-group>
                     </div>
                 </v-img>
                 <v-row class="ma-1">
-                    <v-col :cols="columns" variant="outlined">
+                    <v-col cols="12" lg="6" variant="outlined">
                         <v-sheet border="md" class="text-body-1 pa-4 richtext" v-html="richText"></v-sheet>
                     </v-col>
-                    <v-col :cols="columns">
+                    <v-col cols="12" lg="6">
                         <v-sheet border="md" class="pa-4">
                             <v-carousel progress="primary" hide-delimiters mandatory touch height="auto"
                                 v-if="project && project.gallery && project.gallery.length > 0">
@@ -62,7 +62,6 @@
 
 <script>
 import { ref, onMounted, computed, watch } from 'vue'
-import { useWindowSize } from 'vue-window-size'
 import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n'
 import { fetchOne } from '@/plugins/apiFunctions'
@@ -94,9 +93,7 @@ export default {
     setup(props) {
         const project = ref({})
         const richText = ref('')
-        const columns = computed(() => columnCalculator())
         const isLoading = computed(() => project.value.length === 0 ? true : false)
-        let windowWidth = useWindowSize().width // Composition API version of $windowWidth
 
         onMounted(async () => {
             try {
@@ -107,14 +104,6 @@ export default {
                 console.log(error)
             }
         })
-        function columnCalculator() {
-            switch (true) {
-                case windowWidth.value >= 1280:
-                    return 6
-                default:
-                    return 12
-            }
-        }
         const { t } = useI18n()
         watch(project, () => {
             useHead({
@@ -131,7 +120,7 @@ export default {
                 ],
             })
         }, { deep: true })
-        return { project, richText, columns, isLoading }
+        return { project, richText, isLoading }
     }
 }
 </script>

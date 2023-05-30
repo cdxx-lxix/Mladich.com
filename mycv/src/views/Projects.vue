@@ -2,7 +2,7 @@
   <v-row no-gutters>
     <v-col cols="12">
       <v-row class="ma-2" justify="center" style="height: 80px;">
-        <v-col :cols="$windowWidth >= 1280 ? 6 : 12" style="margin: inherit;">
+        <v-col cols="12" lg="6" style="margin: inherit;">
           <v-text-field v-model="searchText" clearable :label="$t('projects.searchbar')" variant="outlined"
             style="height: 100%;"></v-text-field>
         </v-col>
@@ -14,7 +14,7 @@
         <v-col cols="12" v-if="noResults && !loading" class="text-center">
           {{ $t('errors.noResults') }}
         </v-col>
-        <v-col :cols="columns" style="width: 100%;" v-for="i in filteredProjects" :key="i">
+        <v-col cols="12" sm="12" md="6" lg="4" xl="3" xxl="2" style="width: 100%;" v-for="i in filteredProjects" :key="i">
           <v-card>
             <v-img :src="i.fields.previewImage.fields.file.url" height="200px" cover></v-img>
             <v-card-title>
@@ -39,7 +39,6 @@
   
 <script>
 import { ref, computed, onMounted } from "vue"
-import { useWindowSize } from 'vue-window-size'
 import { fetchContent } from '@/plugins/apiFunctions'
 import useSearch from "@/plugins/searchEngine"
 import FetchError from '@/components/FetchError.vue'
@@ -47,29 +46,12 @@ import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n'
 export default {
   setup() {
-    const columns = computed(() => columnCalculator()) // Adapting the page for proper view on various device width's
     const loading = ref(false) // True when there is an error in fetching data from api. Also needed for future infinite scroll option
     const searchText = ref('') // Search query from v-model
     const projects = ref([]) // Array of projects from the API
-    let windowWidth = useWindowSize().width // Composition API version of $windowWidth
 
     const { filteredContent: filteredProjects } = useSearch(projects, searchText) // Search 
     const noResults = computed(() => filteredProjects.value.length === 0) // Shows card that says of empty search results
-
-    function columnCalculator() {
-      switch (true) {
-        case windowWidth.value >= 2400:
-          return 2
-        case windowWidth.value >= 1920:
-          return 3
-        case windowWidth.value >= 1280:
-          return 4
-        case windowWidth.value >= 780:
-          return 6
-        default:
-          return 12
-      }
-    }
     // Contentful API request 
     onMounted(async () => {
       try {
@@ -92,7 +74,7 @@ export default {
         }
       ],
     })
-    return { columns, loading, projects, searchText, filteredProjects, noResults }
+    return { loading, projects, searchText, filteredProjects, noResults }
   },
   components: {
     FetchError

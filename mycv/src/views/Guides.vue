@@ -2,7 +2,7 @@
   <v-row no-gutters>
     <v-col cols="12">
       <v-row class="ma-2">
-        <v-col :cols="responsive.rightBar" :order="responsive.order" :class="responsive.showSticky">
+        <v-col cols="12" lg="3" :order="$windowWidth >= 1280 ? 2 : 0" :class="$windowWidth >= 1280 ? 'sticky-col' : ''">
           <v-card class="pa-4">
             <v-text-field v-model="searchText" clearable :label="$t('projects.searchbar')" variant="outlined"
               style="height: 100%;"></v-text-field>
@@ -14,7 +14,7 @@
           </v-card>
         </v-col>
 
-        <v-col :cols="responsive.leftBar">
+        <v-col cols="12" lg="9">
 
           <v-card class="mb-6" height="450" v-if="noResults && !loading">
             <v-sheet height="100%" tile>
@@ -61,7 +61,6 @@
 </template>
   
 <script>
-import { useWindowSize } from 'vue-window-size'
 import { computed, ref, onMounted } from 'vue'
 import { fetchContent } from '@/plugins/apiFunctions'
 import useSearch from "@/plugins/searchEngine"
@@ -71,8 +70,6 @@ import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n'
 export default {
   setup() {
-    let windowWidth = useWindowSize().width // Composition API version of $windowWidth
-    const responsive = computed(() => columnCalculator()) // Adapts view to the device width accordingly
     const loading = ref(false) // True when there is an error in fetching data from api. Also needed for future infinite scroll option
     const guides = ref([]) // API's answer with an array of guides
     const searchText = ref("") // v-model variable for search 
@@ -80,14 +77,6 @@ export default {
     const { filteredContent: filteredGuides } = useSearch(guides, searchText) // Search function
     const noResults = computed(() => filteredGuides.value.length === 0) // Shows card that says of empty search results
 
-    function columnCalculator() {
-      switch (true) {
-        case windowWidth.value >= 1280:
-          return { leftBar: 9, showSticky: 'sticky-col', rightBar: 3, order: 2 }
-        default:
-          return { leftBar: 12, showSticky: '', rightBar: 12, order: 0 }
-      }
-    }
     // Contentful API request 
     onMounted(async () => {
       try {
@@ -110,7 +99,7 @@ export default {
         }
       ],
     })
-    return { responsive, loading, guides, searchText, filteredGuides, noResults, useShare }
+    return { loading, guides, searchText, filteredGuides, noResults, useShare }
   },
   components: {
     FetchError
