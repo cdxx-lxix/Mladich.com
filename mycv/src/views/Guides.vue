@@ -2,7 +2,7 @@
   <v-row no-gutters>
     <v-col cols="12">
       <v-row class="ma-2">
-        <v-col cols="12" lg="3" :order="$windowWidth >= 1280 ? 2 : 0" :class="$windowWidth >= 1280 ? 'sticky-col' : ''">
+        <v-col cols="12" lg="3" :order="width >= 1280 ? 2 : 0" :class="width >= 1280 ? 'sticky-col' : ''">
           <v-card class="pa-4">
             <v-text-field v-model="searchText" clearable :label="$t('projects.searchbar')" variant="outlined"
               style="height: 100%;"></v-text-field>
@@ -68,12 +68,13 @@ import { useShare } from '@/plugins/share'
 import FetchError from '@/components/FetchError.vue'
 import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n'
+import { useDisplay } from 'vuetify'
 export default {
   setup() {
     const loading = ref(false) // True when there is an error in fetching data from api. Also needed for future infinite scroll option
     const guides = ref([]) // API's answer with an array of guides
     const searchText = ref("") // v-model variable for search 
-
+    const { width } = useDisplay()
     const { filteredContent: filteredGuides } = useSearch(guides, searchText) // Search function
     const noResults = computed(() => filteredGuides.value.length === 0) // Shows card that says of empty search results
 
@@ -99,7 +100,7 @@ export default {
         }
       ],
     })
-    return { loading, guides, searchText, filteredGuides, noResults, useShare }
+    return { loading, guides, searchText, filteredGuides, noResults, useShare, width }
   },
   components: {
     FetchError

@@ -15,7 +15,6 @@ import { registerPlugins } from '@/plugins'
 
 // My modules
 import i18n from './i18n.js'
-import { VueWindowSizePlugin } from 'vue-window-size/plugin'
 import { createHead } from "@vueuse/head"
 const head = createHead()
 
@@ -23,7 +22,6 @@ const app = createApp(App)
 
 registerPlugins(app)
 app.use(i18n)
-app.use(VueWindowSizePlugin)
 app.use(head)
 
 app.config.globalProperties.$supportedLanguages = ['en', 'ru']

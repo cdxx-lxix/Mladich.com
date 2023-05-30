@@ -25,7 +25,7 @@
           </v-card>
         </v-col>
 
-        <v-col cols="12" lg="4" md="6" class="d-flex flex-director">
+        <v-col cols="12" lg="4" md="6" class="d-flex flex-director" style="height: 100%;">
           <v-card class="ma-2 pa-2 flex-grow-1">
             <v-card-item>
               <v-card-title>{{ $t('aboutme.c2_title') }}</v-card-title>
