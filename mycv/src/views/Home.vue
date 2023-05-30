@@ -54,9 +54,11 @@ export default {
       const parentElement = event.target;
       if (parentElement.children.length > 0) {
         const divText = parentElement.querySelector('.no-selection')
-        const icon = parentElement.querySelector('.mdi')
         divText.classList.add('hoveredOver')
-        icon.classList.add('v-icon--size-x-large')
+        // This if needs to exist because on mobiles and tablets there are no icons and the console becomes bloated with errors.
+        if (windowWidth.value >= 1280) {
+          parentElement.querySelector('.mdi').classList.add('v-icon--size-x-large')
+        }
       }
     }
 
@@ -64,9 +66,10 @@ export default {
       const parentElement = event.target;
       if (parentElement.children.length > 0) {
         const divText = parentElement.querySelector('.no-selection')
-        const icon = parentElement.querySelector('.mdi')
         divText.classList.remove('hoveredOver')
-        icon.classList.remove('v-icon--size-x-large')
+        if (windowWidth.value >= 1280) {
+          parentElement.querySelector('.mdi').classList.remove('v-icon--size-x-large')
+        }
       }
     }
 
@@ -108,9 +111,6 @@ export default {
 </script>
 
 <style scoped>
-.flex-director {
-  flex-direction: column;
-}
 .custom-col {
   flex: 1 0 20%;
   max-width: 20%;

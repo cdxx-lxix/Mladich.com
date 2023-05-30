@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <!-- APPBAR -->
   <v-app-bar :elevation="3">
@@ -21,26 +20,21 @@
   </v-app-bar>
 
   <!-- NAVIGATION -->
-  <v-navigation-drawer v-model="drawer" location="top" temporary style="height: 57px;">
-    <v-layout class="overflow-visible" style="height: 56px;">
+  <v-navigation-drawer v-model="drawer" location="top" temporary style="height: 57px;" v-if="$windowWidth >= 1280">
+    <v-layout style="height: 56px;">
       <v-bottom-navigation active>
-
         <v-btn @click="navigateTo('Home')">{{ $t('menu.home') }}</v-btn>
-
         <v-divider vertical />
-
-        <v-btn @click="navigateTo('About me')">{{ $t('menu.aboutme') }}</v-btn>
-
-        <v-btn @click="navigateTo('My projects')">{{ $t('menu.projects') }}</v-btn>
-
-        <v-btn @click="navigateTo('Youtube')">{{ $t('menu.youtube') }}</v-btn>
-
-        <v-btn @click="navigateTo('Guides')">{{ $t('menu.guides') }}</v-btn>
-
-        <v-btn @click="navigateTo('Contacts')">{{ $t('menu.contacts') }}</v-btn>
-
+        <v-btn v-for="menuItem in menuItems" :key="menuItem.name" @click="navigateTo(menuItem.route)">{{ $t(menuItem.name) }}</v-btn>
       </v-bottom-navigation>
     </v-layout>
+  </v-navigation-drawer>
+
+  <v-navigation-drawer v-model="drawer" location="top" temporary v-else style="height: 330px;">
+        <v-list nav class="text-center">
+          <v-list-item @click="navigateTo('Home')">{{ $t('menu.home') }}</v-list-item>
+          <v-list-item v-for="menuItem in menuItems" :key="menuItem.name" @click="navigateTo(menuItem.route)">{{ $t(menuItem.name) }}</v-list-item>
+        </v-list>
   </v-navigation-drawer>
 
   <!-- BODY -->
@@ -50,18 +44,25 @@
 </template>
 
 <script>
-import Language from '@/components/Language.vue';
-import Theme from '@/components/Theme.vue';
-import { ref } from 'vue';
+import Language from '@/components/Language.vue'
+import Theme from '@/components/Theme.vue'
+import { ref } from 'vue'
 export default {
   setup() {
-    const drawer = ref(false);
+    const drawer = ref(false)
+    const menuItems = ref([
+      { route: 'About me', name: 'menu.aboutme' },
+      { route: 'My projects', name: 'menu.projects' },
+      { route: 'Youtube', name: 'menu.youtube' },
+      { route: 'Guides', name: 'menu.guides' },
+      { route: 'Contacts', name: 'menu.contacts' }
+  ])
 
     const toggleDrawer = () => {
       drawer.value = !drawer.value;
-    };
+    }
 
-    return { drawer, toggleDrawer }
+    return { drawer, toggleDrawer, menuItems }
   },
   components: {
     Theme,
@@ -69,8 +70,15 @@ export default {
   },
   methods: {
     navigateTo(route) {
-      this.$router.push({ name: route });
+      this.$router.push({ name: route })
     },
   },
 }
 </script>
+
+<style>
+/* Makes columns of equal height along with vuetify's d-flex */
+.flex-director {
+  flex-direction: column
+}
+</style>
