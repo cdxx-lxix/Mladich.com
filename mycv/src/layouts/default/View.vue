@@ -20,7 +20,7 @@
   </v-app-bar>
 
   <!-- NAVIGATION -->
-  <v-navigation-drawer v-model="drawer" location="top" temporary style="height: 57px;" v-if="$windowWidth >= 1280">
+  <v-navigation-drawer v-model="drawer" location="top" temporary style="height: 57px;" v-if="width >= 1280">
     <v-layout style="height: 56px;">
       <v-bottom-navigation active>
         <v-btn @click="navigateTo('Home')">{{ $t('menu.home') }}</v-btn>
@@ -47,9 +47,11 @@
 import Language from '@/components/Language.vue'
 import Theme from '@/components/Theme.vue'
 import { ref } from 'vue'
+import { useDisplay } from 'vuetify'
 export default {
   setup() {
     const drawer = ref(false)
+    const { width } = useDisplay()
     const menuItems = ref([
       { route: 'About me', name: 'menu.aboutme' },
       { route: 'My projects', name: 'menu.projects' },
@@ -62,7 +64,7 @@ export default {
       drawer.value = !drawer.value;
     }
 
-    return { drawer, toggleDrawer, menuItems }
+    return { drawer, toggleDrawer, menuItems, width }
   },
   components: {
     Theme,

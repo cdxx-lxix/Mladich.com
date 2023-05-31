@@ -19,8 +19,7 @@ import { useAppStore } from '@/store/app'
 import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import { useWindowSize } from 'vue-window-size'
-
+import { useDisplay } from 'vuetify'
 export default {
   setup() {
     const router = useRouter()
@@ -28,7 +27,7 @@ export default {
     const currentTheme = computed(() => store.currentUsersTheme)
     const decorator = computed(() => reactToTheme())
     const reactor = computed(() => reactToDevice())
-    let windowWidth = useWindowSize().width
+    const { width } = useDisplay()
     const navigateTo = (route) => {
       router.push({ name: route })
     }
@@ -43,7 +42,7 @@ export default {
     }
     function reactToDevice() {
       switch(true) {
-        case windowWidth.value >= 1280:
+        case width.value >= 1280:
           return { sheetsClass: 'custom-col', rowClass: 'my-background', icons: true }
         default:
           return { sheetsClass: 'custom-row', rowClass: 'my-background-mobile', icons: false }
@@ -56,7 +55,7 @@ export default {
         const divText = parentElement.querySelector('.no-selection')
         divText.classList.add('hoveredOver')
         // This if needs to exist because on mobiles and tablets there are no icons and the console becomes bloated with errors.
-        if (windowWidth.value >= 1280) {
+        if (width.value >= 1280) {
           parentElement.querySelector('.mdi').classList.add('v-icon--size-x-large')
         }
       }
@@ -67,7 +66,7 @@ export default {
       if (parentElement.children.length > 0) {
         const divText = parentElement.querySelector('.no-selection')
         divText.classList.remove('hoveredOver')
-        if (windowWidth.value >= 1280) {
+        if (width.value >= 1280) {
           parentElement.querySelector('.mdi').classList.remove('v-icon--size-x-large')
         }
       }
