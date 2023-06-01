@@ -14,8 +14,8 @@ import { createApp } from 'vue'
 import { registerPlugins } from '@/plugins'
 
 // My modules
-import i18n from './i18n.js'
-import { createHead } from "@vueuse/head"
+import i18n from './i18n.js' // Localization plugin
+import { createHead } from "@vueuse/head" // Meta data manager 
 const head = createHead()
 
 const app = createApp(App)
