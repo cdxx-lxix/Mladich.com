@@ -40,7 +40,7 @@
 <script>
 import { ref, computed, onMounted } from "vue"
 import { fetchContent } from '@/plugins/apiFunctions'
-import useSearch from "@/plugins/searchEngine"
+import {useSearch} from "@/plugins/searchEngine"
 import FetchError from '@/components/FetchError.vue'
 import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n'

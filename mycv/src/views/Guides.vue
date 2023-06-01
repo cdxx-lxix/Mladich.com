@@ -6,7 +6,7 @@
           <v-card class="pa-4">
             <v-text-field v-model="searchText" clearable :label="$t('projects.searchbar')" variant="outlined"
               style="height: 100%;"></v-text-field>
-            <v-chip-group v-model="searchText" selected-class="text-secondary" mandatory>
+            <v-chip-group v-model="categoryFilter" selected-class="text-secondary" mandatory>
               <v-chip v-for="chip in chips" :key="chip.value" :value="chip.value">
                 {{ chip.name }}
               </v-chip>
@@ -72,7 +72,7 @@
 <script>
 import { computed, ref, onMounted } from 'vue'
 import { fetchContent } from '@/plugins/apiFunctions'
-import useSearch from "@/plugins/searchEngine"
+import {useSearchFiltered} from "@/plugins/searchEngine"
 import FetchError from '@/components/FetchError.vue'
 import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n'
@@ -82,8 +82,9 @@ export default {
     const loading = ref(false) // True when there is an error in fetching data from api. Also needed for future infinite scroll option
     const guides = ref([]) // API's answer with an array of guides
     const searchText = ref("") // v-model variable for search 
+    const categoryFilter = ref("")
     const { width } = useDisplay()
-    const { filteredContent: filteredGuides } = useSearch(guides, searchText) // Search function
+    const { filteredContent: filteredGuides } = useSearchFiltered(guides, searchText, categoryFilter) // Search function
     const noResults = computed(() => filteredGuides.value.length === 0) // Shows card that says of empty search results
     const snackbar = ref(false)
     const { t } = useI18n()
@@ -137,7 +138,7 @@ export default {
       ],
     })
 
-    return { loading, guides, searchText, filteredGuides, noResults, useShare, width, snackbar, shareMessage }
+    return { loading, guides, searchText, filteredGuides, noResults, useShare, width, snackbar, shareMessage, categoryFilter }
   },
   components: {
     FetchError
