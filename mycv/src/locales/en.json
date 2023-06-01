@@ -92,7 +92,10 @@
     "sitebtn": "Visit website"
   },
   "guide": {
-    "videoTooltip": "Watch on YouTube"
+    "videoTooltip": "Watch on YouTube",
+    "share_success": "Copied to clipboard!",
+    "share_error": "Couldn't copy! Check console.",
+    "share_btn": "Close"
   },
   "errors": {
     "fetchError": "Something went wrong. Could not fetch any data.",

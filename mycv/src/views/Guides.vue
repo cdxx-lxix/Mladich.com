@@ -54,6 +54,15 @@
             </v-card-actions>
           </v-card>
 
+          <v-snackbar v-model="snackbar" timeout="1000">
+            {{ shareMessage }}
+            <template v-slot:actions>
+              <v-btn color="secondary" variant="text" @click="snackbar = false">
+                {{ $t('guide.share_btn') }}
+              </v-btn>
+            </template>
+          </v-snackbar>
+
         </v-col>
       </v-row>
     </v-col>
@@ -64,7 +73,6 @@
 import { computed, ref, onMounted } from 'vue'
 import { fetchContent } from '@/plugins/apiFunctions'
 import useSearch from "@/plugins/searchEngine"
-import { useShare } from '@/plugins/share'
 import FetchError from '@/components/FetchError.vue'
 import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n'
@@ -77,6 +85,34 @@ export default {
     const { width } = useDisplay()
     const { filteredContent: filteredGuides } = useSearch(guides, searchText) // Search function
     const noResults = computed(() => filteredGuides.value.length === 0) // Shows card that says of empty search results
+    const snackbar = ref(false)
+    const { t } = useI18n()
+    const shareMessage = ref('')
+
+    const useShare = (url, title) => {
+      let constructedUrl = window.location.href + "/" + url
+      if (navigator.share) {
+        navigator
+          .share({
+            title: title,
+            url: constructedUrl,
+          })
+          .catch(console.error)
+      } else {
+        // Fallback for desktop devices (copy URL to clipboard)
+        navigator.clipboard
+          .writeText(constructedUrl)
+          .then(() => {
+            snackbar.value = true
+            shareMessage.value = t('guide.share_success')
+          })
+          .catch((err) => {
+            console.error("Failed to copy URL:", err)
+            snackbar.value = true
+            shareMessage.value = t('guide.share_error')
+          })
+      }
+    }
 
     // Contentful API request 
     onMounted(async () => {
@@ -86,7 +122,7 @@ export default {
         loading.value = true
       }
     })
-    const { t } = useI18n()
+
     useHead({
       title: t('menu.guides'),
       meta: [
@@ -100,7 +136,8 @@ export default {
         }
       ],
     })
-    return { loading, guides, searchText, filteredGuides, noResults, useShare, width }
+
+    return { loading, guides, searchText, filteredGuides, noResults, useShare, width, snackbar, shareMessage }
   },
   components: {
     FetchError
