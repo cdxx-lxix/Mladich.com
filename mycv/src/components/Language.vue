@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <v-btn @click="switchLanguage">
         <v-tooltip activator="parent" location="bottom" >{{ $t('appbar.tooltipLang') }}</v-tooltip>

@@ -3,7 +3,7 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { useRouter } from 'vue-router'
 
 // Example call: fetchContent('guides', 'fields.title, fields.slug, fields.imageHeader, fields.category, fields.shortText')
-// Makes an API call to load all content of specific content type. Used in: Projects, Guides.
+// Makes an API call to load all content of specific content type. Used in: Projects, Guides, About me.
 export const fetchContent = async (contentType, fields) => {
   try {
     const response = await client.getEntries({

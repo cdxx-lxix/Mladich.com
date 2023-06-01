@@ -38,7 +38,7 @@
 </template>
   
 <script>
-import { ref, computed, onMounted } from "vue"
+import { ref, computed, onMounted, watch } from "vue"
 import { fetchContent } from '@/plugins/apiFunctions'
 import {useSearch} from "@/plugins/searchEngine"
 import FetchError from '@/components/FetchError.vue'
@@ -49,18 +49,21 @@ export default {
     const loading = ref(false) // True when there is an error in fetching data from api. Also needed for future infinite scroll option
     const searchText = ref('') // Search query from v-model
     const projects = ref([]) // Array of projects from the API
+    const { t, locale } = useI18n()
 
     const { filteredContent: filteredProjects } = useSearch(projects, searchText) // Search 
     const noResults = computed(() => filteredProjects.value.length === 0) // Shows card that says of empty search results
     // Contentful API request 
-    onMounted(async () => {
+    const fetcher = async () => {
       try {
         projects.value = await fetchContent('project', 'fields.title,fields.slug,fields.previewImage,fields.category,fields.projectIcon')
       } catch (error) {
         loading.value = true
       }
-    })
-    const { t } = useI18n()
+    }
+    watch(locale, fetcher, { immediate: true })
+    onMounted(fetcher)
+
     useHead({
       title: t('menu.projects'),
       meta: [

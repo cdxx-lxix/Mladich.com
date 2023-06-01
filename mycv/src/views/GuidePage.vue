@@ -43,7 +43,8 @@ export default {
         const richText = ref('')
         const headerImage = ref('')
         const isLoading = computed(() => guide.value.length === 0 ? true : false)
-        onMounted(async () => {
+        const { t, locale } = useI18n()
+        const fetcher = async () => {
             try {
                 const fetched = await fetchOne('guides', props.slug)
                 guide.value = fetched.contentBody
@@ -52,9 +53,10 @@ export default {
             } catch (error) {
                 console.log(error)
             }
-        })
+        }
+        watch(locale, fetcher, { immediate: true })
+        onMounted(fetcher)
 
-        const { t } = useI18n()
         watch(guide, () => {
             useHead({
                 title: t('meta.thisguide_title') + guide.value.title,

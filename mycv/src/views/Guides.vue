@@ -70,7 +70,7 @@
 </template>
   
 <script>
-import { computed, ref, onMounted } from 'vue'
+import { computed, ref, onMounted, watch } from 'vue'
 import { fetchContent } from '@/plugins/apiFunctions'
 import {useSearchFiltered} from "@/plugins/searchEngine"
 import FetchError from '@/components/FetchError.vue'
@@ -87,7 +87,7 @@ export default {
     const { filteredContent: filteredGuides } = useSearchFiltered(guides, searchText, categoryFilter) // Search function
     const noResults = computed(() => filteredGuides.value.length === 0) // Shows card that says of empty search results
     const snackbar = ref(false)
-    const { t } = useI18n()
+    const { t, locale } = useI18n()
     const shareMessage = ref('')
 
     const useShare = (url, title) => {
@@ -116,13 +116,15 @@ export default {
     }
 
     // Contentful API request 
-    onMounted(async () => {
+    const fetcher = async () => {
       try {
         guides.value = await fetchContent('guides', 'fields.title, fields.slug, fields.imageHeader, fields.category, fields.shortText, fields.creationDate')
       } catch (error) {
         loading.value = true
       }
-    })
+    }
+    watch(locale, fetcher, { immediate: true })
+    onMounted(fetcher)
 
     useHead({
       title: t('menu.guides'),

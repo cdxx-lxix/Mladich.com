@@ -94,8 +94,8 @@ export default {
         const project = ref({})
         const richText = ref('')
         const isLoading = computed(() => project.value.length === 0 ? true : false)
-
-        onMounted(async () => {
+        const { t, locale } = useI18n()
+        const fetcher = async () => {
             try {
                 const fetched = await fetchOne('project', props.slug)
                 project.value = fetched.contentBody
@@ -103,8 +103,9 @@ export default {
             } catch (error) {
                 console.log(error)
             }
-        })
-        const { t } = useI18n()
+        }
+        watch(locale, fetcher, { immediate: true })
+        onMounted(fetcher)
         watch(project, () => {
             useHead({
                 title: t('meta.thisproject_title') + project.value.title,

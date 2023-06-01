@@ -84,7 +84,7 @@
   
 <script>
 import myPhoto from '../assets/images/myPhoto.jpg'
-import { reactive, computed, ref, onMounted } from 'vue'
+import { reactive, computed, ref, onMounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
 import { fetchContent } from '@/plugins/apiFunctions'
@@ -107,15 +107,17 @@ export default {
   setup() {
     const about = ref([])
     const loading = ref(false)
-    onMounted(async () => {
+    const { t, locale } = useI18n()
+    const fetcher = async () => {
       try {
         about.value = await fetchContent('about', 'fields.title,fields.subtitle,fields.skills')
       } catch (error) {
         loading.value = true
       }
-    })
+    }
+    watch(locale, fetcher, { immediate: true })
+    onMounted(fetcher)
     // Iterates over an objects inside i18n locale json
-    const { t } = useI18n()
     const experiences = reactive(['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth'])
     const localizedExperiences = computed(() => {
       return experiences.map(exp => t('experience.' + exp))
