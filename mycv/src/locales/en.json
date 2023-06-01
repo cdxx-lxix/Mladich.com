@@ -23,9 +23,7 @@
     "c1_citizen": "Citizenship: Russia",
     "c1_location": "Located in: Georgia, Tbilisi",
     "c1_text": "Hello there! I'm Alex, {years} y.o.",
-    "c2_title": "Experience & Education",
-    "c3_title": "Soft skills",
-    "c3_subtitle": "Tap to learn more"
+    "c2_title": "Experience & Education"
   },
   "experience": {
     "first": {
@@ -61,7 +59,7 @@
     "sixth": {
       "name": "Mandatory military service",
       "workTime": "2012-2013",
-      "duties": "Served as a firefighter in a rank of a sergeant.",
+      "duties": "Served as a firefighter in MFT.",
       "icon": "mdi-fire-extinguisher"
     },
     "seventh": {
@@ -95,7 +93,8 @@
     "videoTooltip": "Watch on YouTube",
     "share_success": "Copied to clipboard!",
     "share_error": "Couldn't copy! Check console.",
-    "share_btn": "Close"
+    "share_btn": "Close",
+    "read": "Read"
   },
   "errors": {
     "fetchError": "Something went wrong. Could not fetch any data.",

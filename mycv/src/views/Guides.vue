@@ -48,7 +48,7 @@
             </div>
             <v-card-actions class="pa-2 ma-2">
               <router-link :to="{ name: 'The guide', params: { slug: i.fields.slug } }">
-                <v-btn class="px-5" prepend-icon="mdi-book-open" variant="tonal">Read</v-btn>
+                <v-btn class="px-5" prepend-icon="mdi-book-open" variant="tonal">{{ $t('guide.read') }}</v-btn>
               </router-link>
               <v-btn class="px-5" prepend-icon="mdi-eye" variant="flat" style="pointer-events: none;">10</v-btn>
             </v-card-actions>
