@@ -37,8 +37,8 @@ export default {
         instagram: { icon: 'custom:instagramIcon', link: 'https://www.instagram.com/amladich/', tooltip: 'Instagram', id: 3 },
         linkedin: { icon: 'custom:linkedinIcon', link: 'https://www.linkedin.com/in/aleksandr-mladich-656534174/', tooltip: 'LinkedIn', id: 4 },
         telegram: { icon: 'custom:telegramIcon', link: 'https://t.me/cdxx_lxix', tooltip: 'Telegram', id: 5 },
-        whatsapp: { icon: 'custom:whatsappIcon', link: '', tooltip: 'Whatsapp', id: 6 },
-        vk: { icon: 'custom:vkontakteIcon', link: '', tooltip: 'Vkontakte', id: 7 }
+        whatsapp: { icon: 'custom:whatsappIcon', link: 'https://wa.me/qr/O73JMUIPJG76A1', tooltip: 'Whatsapp', id: 6 },
+        vk: { icon: 'custom:vkontakteIcon', link: 'https://vk.com/catcatskitties', tooltip: 'Vkontakte', id: 7 }
       }
     }
   },

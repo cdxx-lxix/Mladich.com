@@ -8,7 +8,7 @@
 <script>
 export default {
     created() {
-        window.location.href = 'https://www.youtube.com'
+        window.location.href = 'https://www.youtube.com/channel/UCS19_gE-9l32KL1X9DJBsow'
     },
 }
 </script>
