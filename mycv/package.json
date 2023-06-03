@@ -1,6 +1,6 @@
 {
-  "name": "mycv",
-  "version": "0.0.1",
+  "name": "mladich.com",
+  "version": "1.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
