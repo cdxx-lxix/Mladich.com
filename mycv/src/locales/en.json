@@ -35,7 +35,7 @@
     "second": {
       "name": "Freelance",
       "workTime": "2020-2021",
-      "duties": "Projects for local businesses and interpreneuers.",
+      "duties": "Projects for local businesses and entrepreneurs.",
       "icon": "mdi-coffee"
     },
     "third": {
@@ -47,11 +47,11 @@
     "fourth": {
       "name": "OZON",
       "workTime": "2017-2020",
-      "duties": "Warehouse manager",
+      "duties": "A Warehouse manager",
       "icon": "mdi-briefcase"
     },
     "fifth": {
-      "name": "Karl's Faberge Colledge",
+      "name": "Karl's Faberge College",
       "workTime": "2014-2017",
       "duties": "Design degree",
       "icon": "mdi-school"
