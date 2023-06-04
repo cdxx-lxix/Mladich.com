@@ -49,11 +49,11 @@
 
         <v-col cols="12" lg="4" md="6" v-for="block in about" class="d-flex flex-director">
           <v-card class="ma-2 pa-2 flex-grow-1">
-            <v-card-title>{{ $t(block.fields.title) }}</v-card-title>
-            <v-card-subtitle>{{ $t(block.fields.subtitle) }}</v-card-subtitle>
+            <v-card-title>{{ block.fields.title }}</v-card-title>
+            <v-card-subtitle>{{ block.fields.subtitle }}</v-card-subtitle>
             <v-list lines="one" density="compact">
               <v-list-item v-for="skill in block.fields.skills" :key="skill.title" :title="skill.title"
-                :subtitle="$t(skill.short_text)">
+                :subtitle="skill.short_text">
                 <template v-slot:prepend>
                   <v-icon :icon="skill.icon"></v-icon>
                 </template>

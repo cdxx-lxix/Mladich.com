@@ -20,6 +20,8 @@ import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useDisplay } from 'vuetify'
+import corpDark from '@/assets/CorporationDark.svg'
+import corpLight from '@/assets/CorporationLight.svg'
 export default {
   setup() {
     const router = useRouter()
@@ -28,6 +30,8 @@ export default {
     const decorator = computed(() => reactToTheme())
     const reactor = computed(() => reactToDevice())
     const { width } = useDisplay()
+    const lightbg = `url(${corpLight})`
+    const darkbg = `url(${corpDark})`
     const navigateTo = (route) => {
       router.push({ name: route })
     }
@@ -103,7 +107,9 @@ export default {
       handleMouseOut,
       menuItems,
       decorator,
-      reactor
+      reactor,
+      lightbg,
+      darkbg
     }
   },
 }
@@ -147,10 +153,10 @@ export default {
 }
 
 .my-background-dark {
-  background-image: url('src/assets/CorporationLight.svg');
+  background-image: v-bind(lightbg);
 }
 .my-background-light {
-  background-image: url('src/assets/CorporationDark.svg');
+  background-image: v-bind(darkbg);
 }
 .my-background {
   background-position: center;
