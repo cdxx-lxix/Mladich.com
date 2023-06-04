@@ -17,17 +17,17 @@ import { registerPlugins } from '@/plugins'
 import i18n from './i18n.js' // Localization plugin
 import { createHead } from "@vueuse/head" // Meta data manager 
 const head = createHead()
-import VueGtag from "vue-gtag"
+import gtag from "vue-gtag-next"
 
 const app = createApp(App)
 
 registerPlugins(app)
 app.use(i18n)
 app.use(head)
-app.use(VueGtag, {
-    config: { id: import.meta.env.VITE_GTAG }
-  })
-
 app.config.globalProperties.$supportedLanguages = ['en', 'ru']
-
+app.use(gtag, {
+  property: {
+    id: import.meta.env.VITE_GTAG
+  }
+})
 app.mount('#app')

@@ -1,0 +1,12 @@
+User-agent: AdsBot-Google
+Disallow: /
+
+User-agent: *
+Allow: /
+
+User-agent: *
+Disallow: /*.webp$
+Disallow: /*.svg$
+
+Sitemap: https://mladich.com/sitemap.xml
+Sitemap: https://www.mladich.com/sitemap.xml
