@@ -16,6 +16,7 @@
     "pinia": "^2.0.23",
     "roboto-fontface": "*",
     "vue": "^3.2.38",
+    "vue-gtag": "^2.0.1",
     "vue-i18n": "^9.2.2",
     "vue-meta": "^3.0.0-alpha.2",
     "vue-router": "^4.0.0",
