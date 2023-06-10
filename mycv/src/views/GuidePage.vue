@@ -1,11 +1,11 @@
 <template>
-    <v-row>
+    <v-row no-gutters>
         <v-col cols="12">
             <v-card class="ma-5" :loading="isLoading">
                 <v-toolbar color="surface" density="comfortable" flat>
                     <v-tooltip :text="$t('guide.videoTooltip')" location="bottom">
                         <template v-slot:activator="{ props }">
-                            <v-btn icon="custom:youtubeIcon" v-bind="props" :href="guide.videoLink"></v-btn>
+                            <v-btn icon="custom:youtubeIcon" :disabled="guide.videoLink ? false : true" v-bind="props" :href="guide.videoLink"></v-btn>
                         </template>
                     </v-tooltip>
                     <v-toolbar-title class="text-h5">{{ guide.category }}</v-toolbar-title>

@@ -31,9 +31,9 @@
             <FetchError></FetchError>
           </v-card>
 
-          <v-card class="mb-6" height="450" v-for="i in filteredGuides" :key="i">
+          <v-card class="mb-6" style="max-height: 450px;" v-for="i in filteredGuides" :key="i">
             <v-img cover height="100" :src="i.fields.imageHeader.fields.file.url">
-              <v-toolbar color="transparent">
+              <v-toolbar color="transparent" height="100">
                 <template v-slot:prepend>
                   <v-btn @click="useShare(i.fields.slug, i.fields.title)" icon="mdi-share-variant"></v-btn>
                 </template>
@@ -50,7 +50,6 @@
               <router-link :to="{ name: 'The guide', params: { slug: i.fields.slug } }">
                 <v-btn class="px-5" prepend-icon="mdi-book-open" variant="tonal">{{ $t('guide.read') }}</v-btn>
               </router-link>
-              <v-btn class="px-5" prepend-icon="mdi-eye" variant="flat" style="pointer-events: none;">10</v-btn>
             </v-card-actions>
           </v-card>
 

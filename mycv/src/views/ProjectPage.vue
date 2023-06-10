@@ -1,5 +1,5 @@
 <template>
-    <v-row>
+    <v-row no-gutters>
         <v-col cols="12">
             <v-card class="ma-5">
                 <v-img :src="randomPattern" height="200" cover>
