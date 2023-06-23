@@ -27,6 +27,7 @@ import jsIcon  from '@/assets/icons/Software/js-icon.vue'
 import phpIcon from '@/assets/icons/Software/php-icon.vue'
 import pythonIcon from '@/assets/icons/Software/python-icon.vue'
 import sassIcon from '@/assets/icons/Software/sass-icon.vue'
+import kotlinIcon from '@/assets/icons/Software/kotlin-icon.vue'
 
 // Software & OS icons
 import windowsIcon from '@/assets/icons/Software/windows-icon.vue'
@@ -76,6 +77,7 @@ const myIconPack: any = {
   phpIcon,
   pythonIcon,
   sassIcon,
+  kotlinIcon,
 
   wordpressIcon,
   mediawikiIcon,

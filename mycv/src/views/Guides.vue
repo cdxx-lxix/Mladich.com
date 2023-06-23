@@ -31,7 +31,7 @@
             <FetchError></FetchError>
           </v-card>
 
-          <v-card class="mb-6" style="max-height: 450px;" v-for="i in filteredGuides" :key="i">
+          <v-card class="mb-6" :style="width >= 1080 ? 'max-height: 450px;' : 'max-height: 650px;'" v-for="i in filteredGuides" :key="i">
             <v-img cover height="100" :src="i.fields.imageHeader.fields.file.url">
               <v-toolbar color="transparent" height="100">
                 <template v-slot:prepend>
