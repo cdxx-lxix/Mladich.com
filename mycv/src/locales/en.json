@@ -23,56 +23,26 @@
     "c1_citizen": "Citizenship: Russia",
     "c1_location": "Located in: Serbia, Belgrade",
     "c1_text": "Hello there! I'm Alex, {years} y.o. I'm a web developer. Ready to jump on a project.",
-    "c2_title": "Experience & Education"
+    "c2_title": "Experience"
   },
   "experience": {
     "first": {
-      "name": "ACIDWEAR",
-      "workTime": "2021-2023",
-      "duties": "Web developer + Help desk + Infrastucture",
+      "name": "Innovatsia LLC",
+      "workTime": "2020-2021",
+      "duties": "Junior Front-end Developer",
       "icon": "mdi-briefcase"
     },
     "second": {
-      "name": "Freelance",
-      "workTime": "2020-2021",
-      "duties": "Projects for local businesses and entrepreneurs.",
-      "icon": "mdi-coffee"
-    },
-    "third": {
-      "name": "Skilled Young Talents",
-      "workTime": "2020",
-      "duties": "Government funded program of additional education for skilled workers.",
-      "icon": "mdi-school"
-    },
-    "fourth": {
-      "name": "OZON",
-      "workTime": "2017-2020",
-      "duties": "A Warehouse manager",
+      "name": "ACIDWEAR",
+      "workTime": "2021-2023",
+      "duties": "Front-end Developer",
       "icon": "mdi-briefcase"
     },
-    "fifth": {
-      "name": "Karl's Faberge College",
-      "workTime": "2014-2017",
-      "duties": "Design degree",
-      "icon": "mdi-school"
-    },
-    "sixth": {
-      "name": "Mandatory military service",
-      "workTime": "2012-2013",
-      "duties": "Served as a firefighter in MFT.",
-      "icon": "mdi-fire-extinguisher"
-    },
-    "seventh": {
-      "name": "Public school education",
-      "workTime": "2001-2012",
-      "duties": "General school education",
-      "icon": "mdi-school"
-    },
-    "eighth": {
-      "name": "Initial commit",
-      "workTime": "1994",
-      "duties": "Difficulty: Hard. Player name: Alex Mladich. Location: Russia, Moscow.",
-      "icon": "mdi-baby-bottle"
+    "third": {
+      "name": "Freelance",
+      "workTime": "Now",
+      "duties": "Front-end Developer",
+      "icon": "mdi-coffee"
     }
   },
   "contacts": {

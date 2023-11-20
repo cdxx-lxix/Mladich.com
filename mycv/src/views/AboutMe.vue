@@ -118,7 +118,7 @@ export default {
     watch(locale, fetcher, { immediate: true })
     onMounted(fetcher)
     // Iterates over an objects inside i18n locale json
-    const experiences = reactive(['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth'])
+    const experiences = reactive(['first', 'second', 'third'])
     const localizedExperiences = computed(() => {
       return experiences.map(exp => t('experience.' + exp))
     })

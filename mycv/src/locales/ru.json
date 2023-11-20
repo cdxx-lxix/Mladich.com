@@ -23,56 +23,26 @@
       "c1_citizen": "Гражданство: РФ",
       "c1_location": "Нахожусь: Сербия, Белград",
       "c1_text": "Привет! Я Алекс, возраст - {years}. Вэб девелопер. Готов к проектам.",
-      "c2_title": "Опыт и образование"
+      "c2_title": "Опыт работы"
     },
     "experience": {
       "first": {
-        "name": "ACIDWEAR",
-        "workTime": "2021-2023",
-        "duties": "Вэб девелопер + Help desk + Инфраструктура",
+        "name": "Innovatsia LLC",
+        "workTime": "2020-2021",
+        "duties": "Junior Front-end Developer",
         "icon": "mdi-briefcase"
       },
       "second": {
-        "name": "Фриланс",
-        "workTime": "2020-2021",
-        "duties": "Проекты для локальных бизнесов и ИП",
-        "icon": "mdi-coffee"
-      },
-      "third": {
-        "name": "Молодые таланты",
-        "workTime": "2020",
-        "duties": "Государственная программа повышения квалификации",
-        "icon": "mdi-school"
-      },
-      "fourth": {
-        "name": "OZON",
-        "workTime": "2017-2020",
-        "duties": "Складской менеджер",
+        "name": "ACIDWEAR",
+        "workTime": "2021-2023",
+        "duties": "Front-end Developer",
         "icon": "mdi-briefcase"
       },
-      "fifth": {
-        "name": "Колледж им. Карла Фаберже",
-        "workTime": "2014-2017",
-        "duties": "Образование дизайнера",
-        "icon": "mdi-school"
-      },
-      "sixth": {
-        "name": "Срочная служба",
-        "workTime": "2012-2013",
-        "duties": "Служил пожарным в ВПК.",
-        "icon": "mdi-fire-extinguisher"
-      },
-      "seventh": {
-        "name": "Средняя школа",
-        "workTime": "2001-2012",
-        "duties": "ОБщее образование, 11 классов.",
-        "icon": "mdi-school"
-      },
-      "eighth": {
-        "name": "Initial commit",
-        "workTime": "1994",
-        "duties": "Сложность: Тяжело. Игрок: Алекс Младич. Локация: РФ, Москва.",
-        "icon": "mdi-baby-bottle"
+      "third": {
+        "name": "Freelance",
+        "workTime": "Now",
+        "duties": "Front-end Developer",
+        "icon": "mdi-coffee"
       }
     },
     "contacts": {
