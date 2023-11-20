@@ -21,7 +21,7 @@
     "c1_position": "Web Developer",
     "c1_status": "Freelance / Open for hire",
     "c1_citizen": "Citizenship: Russia",
-    "c1_location": "Located in: Georgia, Tbilisi",
+    "c1_location": "Located in: Serbia, Belgrade",
     "c1_text": "Hello there! I'm Alex, {years} y.o. I'm a web developer. Ready to jump on a project.",
     "c2_title": "Experience & Education"
   },
@@ -77,7 +77,8 @@
   },
   "contacts": {
     "title": "My socials: ",
-    "text": "For now I'm living in Tbilisi, Georgia [UTC+4] (FYI for US visitors: it's a country in Europe and not a state in the US). You can contact me anytime that is comfortable for you but do not expect an immediate answer."
+    "text": "Belgrade, Serbia [UTC+1]. You can contact me anytime that is comfortable for you but do not expect an immediate response.",
+    "gratitude": "Special thanks to:"
   },
   "projects": {
     "readmore": "Read more",
