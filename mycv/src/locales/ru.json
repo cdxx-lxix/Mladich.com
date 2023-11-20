@@ -17,17 +17,16 @@
       "search": "Поиск"
     },
     "aboutme": {
-      "c1_title": "Обо мне",
-      "c1_position": "Веб девелопер",
+      "c1_title": "Это я",
+      "c1_position": "Front-end Developer",
       "c1_status": "Фриланс / Открыт для найма",
-      "c1_citizen": "Гражданство: РФ",
-      "c1_location": "Нахожусь: Сербия, Белград",
-      "c1_text": "Привет! Я Алекс, возраст - {years}. Вэб девелопер. Готов к проектам.",
+      "c1_location": "Нахожусь в Сербии, Белград",
+      "c1_text": "Привет! Меня зовут Александр Младич. Я Front-End Developer питающий любовь к созданию увлекательных вэб приложений и четким пониманием принципов разработки, и дизайна ориентированного на пользователя. По образованию - дизайнер, что дает мне уникальную перспективу на разработку дизайна, пользовательских интерфэйсов и компонентов.",
       "c2_title": "Опыт работы"
     },
     "experience": {
       "first": {
-        "name": "Innovatsia LLC",
+        "name": "ООО Инновация",
         "workTime": "2020-2021",
         "duties": "Junior Front-end Developer",
         "icon": "mdi-briefcase"
@@ -39,8 +38,8 @@
         "icon": "mdi-briefcase"
       },
       "third": {
-        "name": "Freelance",
-        "workTime": "Now",
+        "name": "Фриланс",
+        "workTime": "Сейчас",
         "duties": "Front-end Developer",
         "icon": "mdi-coffee"
       }

@@ -17,12 +17,11 @@
     "search": "Search"
   },
   "aboutme": {
-    "c1_title": "About me",
-    "c1_position": "Web Developer",
+    "c1_title": "That's me",
+    "c1_position": "Front-end Developer",
     "c1_status": "Freelance / Open for hire",
-    "c1_citizen": "Citizenship: Russia",
-    "c1_location": "Located in: Serbia, Belgrade",
-    "c1_text": "Hello there! I'm Alex, {years} y.o. I'm a web developer. Ready to jump on a project.",
+    "c1_location": "Located in Serbia, Belgrade",
+    "c1_text": "Hello there! My name is Aleksandr Mladich. I am a Front-End Developer with a passion for creating captivating web apps and a strong understanding of web development principles and user centered design. I have a degree in industrial and product design, which gives me a unique perspective on how to design and develop user friendly interfaces and components.",
     "c2_title": "Experience"
   },
   "experience": {
