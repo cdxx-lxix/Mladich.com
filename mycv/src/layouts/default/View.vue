@@ -28,21 +28,11 @@
     </template>
   </v-app-bar>
 
-  <!-- NAVIGATION -->
-  <v-navigation-drawer v-model="drawer" location="top" temporary style="height: 57px;" v-if="width >= 1280">
-    <v-layout style="height: 56px;">
-      <v-bottom-navigation active>
-        <v-btn @click="navigateTo('Home')">{{ $t('menu.home') }}</v-btn>
-        <v-divider vertical />
-        <v-btn v-for="menuItem in menuItems" :key="menuItem.name" @click="navigateTo(menuItem.route)">{{ $t(menuItem.name)
-        }}</v-btn>
-      </v-bottom-navigation>
-    </v-layout>
-  </v-navigation-drawer>
-
-  <v-navigation-drawer v-model="drawer" location="top" temporary v-else style="height: 330px;">
+  <!-- MOBILE NAV DRAWER-->
+  <v-navigation-drawer v-model="drawer" temporary>
     <v-list nav class="text-center">
       <v-list-item @click="navigateTo('Home')">{{ $t('menu.home') }}</v-list-item>
+      <v-divider></v-divider>
       <v-list-item v-for="menuItem in menuItems" :key="menuItem.name" @click="navigateTo(menuItem.route)">{{
         $t(menuItem.name) }}</v-list-item>
     </v-list>
