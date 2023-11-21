@@ -14,7 +14,8 @@
     "youtube": "My channel",
     "guides": "Guides",
     "contacts": "Contacts",
-    "search": "Search"
+    "search": "Search",
+    "certificates": "Certificates"
   },
   "aboutme": {
     "c1_title": "That's me",
@@ -82,6 +83,12 @@
     "home_title": "Alex Mladich - Web Developer",
     "aboutme_desc": "Alex Mladich's CV page. Skills, bio, experience and education.",
     "contacts_desc": "Most relevant ways to contact me.",
-    "thisguide_title": "Guide: "
+    "thisguide_title": "Guide: ",
+    "certs_desc": "My certificates and licences"
+  },
+  "certificates": {
+    "acquired": "Date acquired:",
+    "type": "Learning type:",
+    "linkbtn": "Show credencials"
   }
 }

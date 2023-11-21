@@ -14,7 +14,8 @@
       "youtube": "Мой канал",
       "guides": "Гайды",
       "contacts": "Контакты",
-      "search": "Поиск"
+      "search": "Поиск",
+      "certificates": "Сертификаты"
     },
     "aboutme": {
       "c1_title": "Это я",
@@ -82,7 +83,13 @@
       "home_title": "Алекс Младич - Web Developer",
       "aboutme_desc": "Портфолио. Опыт, образование, общая информация и умения.",
       "contacts_desc": "Доступные способы связи",
-      "thisguide_title": "Гайд: "
+      "thisguide_title": "Гайд: ",
+      "certs_desc": "Мои сертификаты и лицензии"
+    },
+    "certificates": {
+      "acquired": "Получен:",
+      "type": "Вид обучения:",
+      "linkbtn": "Показать сертификат"
     }
   }
   

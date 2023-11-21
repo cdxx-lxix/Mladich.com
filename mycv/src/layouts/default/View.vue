@@ -60,7 +60,7 @@ export default {
     const menuItems = ref([
       { route: 'About me', name: 'menu.aboutme', model: "/about-me" },
       { route: 'My projects', name: 'menu.projects', model: "/projects" },
-      { route: 'Youtube', name: 'menu.youtube', model: "/youtube" },
+      { route: 'Certificates', name: 'menu.certificates', model: "/certificates" },
       { route: 'Guides', name: 'menu.guides', model: "/guides" },
       { route: 'Contacts', name: 'menu.contacts', model: "/contacts" }
     ])
