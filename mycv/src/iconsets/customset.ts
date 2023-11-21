@@ -17,6 +17,8 @@ import bootstrapIcon from '@/assets/icons/Software/bootstrap-icon.vue'
 import quasarIcon from '@/assets/icons/Software/quasar-icon.vue'
 import vueIcon  from '@/assets/icons/Software/vue-icon.vue'
 import vuetifyIcon from '@/assets/icons/Software/vuetify-icon.vue'
+import reactIcon from '@/assets/icons/Software/react-icon.vue'
+import tailwindIcon from '@/assets/icons/Software/tailwind-icon.vue'
 
 // Language icons
 import bashIcon from '@/assets/icons/Software/bash-icon.vue'
@@ -28,6 +30,7 @@ import phpIcon from '@/assets/icons/Software/php-icon.vue'
 import pythonIcon from '@/assets/icons/Software/python-icon.vue'
 import sassIcon from '@/assets/icons/Software/sass-icon.vue'
 import kotlinIcon from '@/assets/icons/Software/kotlin-icon.vue'
+import tsIcon  from '@/assets/icons/Software/ts-icon.vue'
 
 // Software & OS icons
 import windowsIcon from '@/assets/icons/Software/windows-icon.vue'
@@ -52,6 +55,7 @@ import nginxIcon from '@/assets/icons/Software/nginx-icon.vue'
 import nodeIcon  from '@/assets/icons/Software/node-icon.vue'
 import webpackIcon from '@/assets/icons/Software/webpack-icon.vue'
 import sqlIcon from '@/assets/icons/Software/sql-icon.vue'
+import graphqlIcon from '@/assets/icons/Software/graphql-icon.vue'
 
 
 const myIconPack: any = {
@@ -68,6 +72,8 @@ const myIconPack: any = {
   quasarIcon,
   vueIcon,
   vuetifyIcon,
+  reactIcon,
+  tailwindIcon,
 
   bashIcon,
   cssIcon,
@@ -78,6 +84,7 @@ const myIconPack: any = {
   pythonIcon,
   sassIcon,
   kotlinIcon,
+  tsIcon,
 
   wordpressIcon,
   mediawikiIcon,
@@ -98,7 +105,8 @@ const myIconPack: any = {
   nginxIcon,
   nodeIcon,
   sqlIcon,
-  webpackIcon
+  webpackIcon,
+  graphqlIcon,
 };
 
 const custom: IconSet = {

@@ -94,7 +94,7 @@ export default {
     const menuItems = ref([
       { id: 1, icon: 'mdi-account', text: 'menu.aboutme', route: 'About me' },
       { id: 2, icon: 'mdi-projector-screen', text: 'menu.projects', route: 'My projects' },
-      { id: 3, icon: 'mdi-video', text: 'menu.youtube', route: 'Youtube' },
+      { id: 3, icon: 'mdi-certificate', text: 'menu.certificates', route: 'Certificates' },
       { id: 4, icon: 'mdi-television-guide', text: 'menu.guides', route: 'Guides' },
       { id: 5, icon: 'mdi-card-account-mail', text: 'menu.contacts', route: 'Contacts' }
     ])
