@@ -129,26 +129,28 @@ export default {
 }
 
 .transparent-sheet {
-  opacity: 0.4;
+  /* opacity: 0.4; */
+  background-color: #161616a6;
   border-right: #000000a6 2px solid;
   cursor: pointer;
 }
 
 .transparent-sheet:hover {
-  opacity: 1 !important;
-  background: rgba(21, 21, 21, 0.6);
+  /* opacity: 1 !important; */
+  background: #212121a3;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .transparent-sheetLight {
-  opacity: 0.4;
+  /* opacity: 0.4; */
+  background-color: #FFFFFFa6;
   border-right: #000000a6 2px solid;
   cursor: pointer;
 }
 
 .transparent-sheetLight:hover {
-  opacity: 1 !important;
-  background: rgba(204, 203, 203, 0.6);
+  /* opacity: 1 !important; */
+  background: #676767a3;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
